@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+</head>
+<script src="/javascripts/jquery.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    $(document).ready(function() {
+
+        let socket = io.connect('/'); // default namespace for Socket.io
+
+
+        $(function() {
+            console.log("--------------");
+
+            $('#send').click(() => {
+                console.log("clikked");
+                var data = $('#input').val();
+                console.log(data);
+
+                socket.emit('indlæg', data);
+
+                console.log("send message to server");
+                $('#input').val('');
+
+                $('#input').text("");
+            });
+
+
+
+            socket.on("saved", (data) => {
+                console.log("saved " + data);
+                $('#indhold').text("");
+                var dataObj = JSON.parse(data);
+
+                for (i = 0; i < dataObj.length; i++) {
+                    $('#indhold').append(dataObj[i].indlæg + "<br />");
+                }
+
+            });
+
+
+
+
+        });
+    });
+
+</script>
+
+<body>
+
+
+    <form>
+
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username"><br>
+        <label for="pwd">Password:</label><br>
+        <input type="password" id="pwd" name="pwd">
+
+        <input id="" type="button" value="Submit">
+
+    </form>
+
+    <form>
+
+
+
+        <textarea id="input" name="message" rows="20" cols="50">
+
+
+</textarea>
+        <input id="send" type="button" value="Submit">
+
+    </form>
+    <form>
+
+        <input type="file" id="myFile" name="filename">
+        <input type="submit">
+    </form>
+
+    <p>
+    <div id=indhold>
+    </div>
+
+
+    </p>
+
+
+
+
+
+</body>
+
+</html>
