@@ -10,10 +10,20 @@
     $(document).ready(function() {
 
         let socket = io.connect('/'); // default namespace for Socket.io
+        $('#inputfield').hide();
 
 
         $(function() {
             console.log("--------------");
+
+            $('#login').click(() => {
+                console.log("i'm trying to log in");
+
+                var username = $('#username').val();
+                var password = $('#pwd').val();
+
+                socket.emit('login', username, password);
+            });
 
             $('#send').click(() => {
                 console.log("clikked");
@@ -41,6 +51,33 @@
 
             });
 
+            socket.on("logging_in", (data) => {
+                console.log("logging in " + data);
+                var dataObj = JSON.parse(data);
+
+                var registreretBrgn = dataObj[0].brugernavn;
+                var registreretPswd = dataObj[0].password;
+                
+                var registreretBrgn2 = dataObj[1].brugernavn;
+                var registreretPswd2 = dataObj[1].password;
+
+                console.log("Registreret 1: " + registreretBrgn + " & " + registreretPswd);
+                console.log("Registreret 2: " + registreretBrgn2 + " & " + registreretPswd2);
+
+                var username = $('#username').val();
+                var password = $('#pwd').val();
+
+                console.log("Skrevet: " + username + " & " + password);
+
+                if (((username == registreretBrgn) && (password == registreretPswd))||((username == registreretBrgn2) && (password == registreretPswd2))) {
+                    console.log("WOOOHOOO");
+                    $('#inputfield').show();
+                    $('#loginForm').hide();
+                } else {
+                    console.log("WRONG")
+                }
+
+            });
 
 
 
@@ -51,7 +88,7 @@
 
 <body>
 
-
+<div id="loginForm">
     <form>
 
         <label for="username">Username:</label><br>
@@ -59,10 +96,12 @@
         <label for="pwd">Password:</label><br>
         <input type="password" id="pwd" name="pwd">
 
-        <input id="" type="button" value="Submit">
+        <input id="login" type="button" value="Submit">
 
     </form>
-
+    </div>
+    
+<div id="inputfield">
     <form>
 
 
@@ -79,15 +118,16 @@
         <input type="file" id="myFile" name="filename">
         <input type="submit">
     </form>
+    
 
     <p>
-    <div id=indhold>
-    </div>
+        <div id=indhold>
+        </div>
 
 
     </p>
 
-
+</div>
 
 
 

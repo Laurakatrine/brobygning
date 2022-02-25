@@ -53,7 +53,7 @@ io.on('connection', function (socket) {
     socket.on('indlæg', (data) => {
         input = data;
 
-        console.log(data);
+        console.log("data" + data);
 
 
 
@@ -71,12 +71,25 @@ io.on('connection', function (socket) {
 
     });
 
+    socket.on('login', (username, password) => {
+        console.log(username + password);
+
+        const collectionLogin = client.db("brobygning").collection("login");
+
+        collectionLogin.find({}).toArray((err, docs) => { //you can chosse filter inside the find
+            if (err) console.log(err);
+            console.log("Found the following login");
+            console.log(docs);
+            var foundData = docs;
+            console.log("Login");
+
+            socket.emit("logging_in", JSON.stringify(foundData));
+        });
 
 
+    });
 
 });
-
-
 
 http.listen(3000, () => {
     console.log('Server started: listening on localhost:3000');
