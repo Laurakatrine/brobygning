@@ -50,10 +50,10 @@ io.on('connection', function (socket) {
 
     socket.emit("saved", JSON.stringify(saveddata));
 
-    socket.on('indlæg', (data) => {
+    socket.on('indlæg', (data, username) => {
         input = data;
 
-        console.log("data" + data);
+        console.log("data" + data + "username: " + username);
 
 
 
@@ -63,7 +63,8 @@ io.on('connection', function (socket) {
             const collection2 = client.db("brobygning").collection("test");
 
             collection2.insertOne({
-                indlæg: data
+                indlæg: data,
+                brugernavn: username
             })
         })
 

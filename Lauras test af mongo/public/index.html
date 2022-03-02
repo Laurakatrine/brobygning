@@ -7,20 +7,33 @@
 <script src="/javascripts/jquery.min.js"></script>
 <script src="/socket.io/socket.io.js"></script>
 <script>
+    var username;
+    var password;
+
     $(document).ready(function() {
 
         let socket = io.connect('/'); // default namespace for Socket.io
-        $('#inputfield').hide();
+
+        if (localStorage.getItem("login") == "false") {
+            console.log("im not logged in");
+            $('#inputfield').hide();
+            $('#signoff').hide();
+        }
+        if (localStorage.getItem("login") == "true") {
+            console.log("im already logged in");
+            $('#inputfield').show();
+            $('#signoff').show();
+            $('#loginForm').hide();
+        }
 
 
         $(function() {
             console.log("--------------");
 
             $('#login').click(() => {
-                console.log("i'm trying to log in");
-
-                var username = $('#username').val();
-                var password = $('#pwd').val();
+                
+                username = $('#username').val();
+                password = $('#pwd').val();
 
                 socket.emit('login', username, password);
             });
@@ -29,13 +42,31 @@
                 console.log("clikked");
                 var data = $('#input').val();
                 console.log(data);
+                console.log(username);
 
-                socket.emit('indlæg', data);
+                socket.emit('indlæg', data, username);
 
                 console.log("send message to server");
                 $('#input').val('');
 
                 $('#input').text("");
+
+            });
+
+            $('#signoff').click(() => {
+                console.log("signing off");
+                localStorage.setItem("login", "false");
+                $('#inputfield').hide();
+                $('#signoff').hide();
+                $('#loginForm').show();
+            });
+
+            $("#newpage").click(() => {
+                $("#indhold").load("nyside.html");
+            });
+            
+            $("#homepage").click(() => {
+                $("#indhold").load("index.html");
             });
 
 
@@ -45,34 +76,41 @@
                 $('#indhold').text("");
                 var dataObj = JSON.parse(data);
 
+
                 for (i = 0; i < dataObj.length; i++) {
-                    $('#indhold').append(dataObj[i].indlæg + "<br />");
+                    $('#indhold').append(dataObj[i].indlæg + " & " + dataObj[i].brugernavn + "<br />");
+
+
+                    //console.log(dataObj[i].brugernavn);
                 }
 
             });
 
             socket.on("logging_in", (data) => {
-                console.log("logging in " + data);
+                //console.log("logging in " + data);
                 var dataObj = JSON.parse(data);
 
                 var registreretBrgn = dataObj[0].brugernavn;
                 var registreretPswd = dataObj[0].password;
-                
+
                 var registreretBrgn2 = dataObj[1].brugernavn;
                 var registreretPswd2 = dataObj[1].password;
 
-                console.log("Registreret 1: " + registreretBrgn + " & " + registreretPswd);
-                console.log("Registreret 2: " + registreretBrgn2 + " & " + registreretPswd2);
+                //console.log("Registreret 1: " + registreretBrgn + " & " + registreretPswd);
+                //console.log("Registreret 2: " + registreretBrgn2 + " & " + registreretPswd2);
 
-                var username = $('#username').val();
-                var password = $('#pwd').val();
+                username = $('#username').val();
+                password = $('#pwd').val();
 
-                console.log("Skrevet: " + username + " & " + password);
+                //console.log("Skrevet: " + username + " & " + password);
 
-                if (((username == registreretBrgn) && (password == registreretPswd))||((username == registreretBrgn2) && (password == registreretPswd2))) {
-                    console.log("WOOOHOOO");
+                if (((username == registreretBrgn) && (password == registreretPswd)) || ((username == registreretBrgn2) && (password == registreretPswd2))) {
+                    console.log("Correct login");
                     $('#inputfield').show();
                     $('#loginForm').hide();
+                    $('#signoff').show();
+                    localStorage.setItem("login", "true");
+                    console.log(localStorage.getItem("login"));
                 } else {
                     console.log("WRONG")
                 }
@@ -87,47 +125,59 @@
 </script>
 
 <body>
-
-<div id="loginForm">
-    <form>
-
-        <label for="username">Username:</label><br>
-        <input type="text" id="username" name="username"><br>
-        <label for="pwd">Password:</label><br>
-        <input type="password" id="pwd" name="pwd">
-
-        <input id="login" type="button" value="Submit">
-
-    </form>
+    <div id="navbar">
+        <nav>
+            <ul class="nav">
+                <li><a id="homepage" href="#">Home</a></li>
+                <li><a id="newpage" href="#">New page</a></li>
+            </ul>
+        </nav>
     </div>
-    
-<div id="inputfield">
-    <form>
+    <div id="loginForm">
+        <form>
+
+            <label for="username">Username:</label><br>
+            <input type="text" id="username" name="username"><br>
+            <label for="pwd">Password:</label><br>
+            <input type="password" id="pwd" name="pwd">
+
+            <input id="login" type="button" value="Submit">
+
+        </form>
+    </div>
+
+    <div id="inputfield">
+        <form>
 
 
 
-        <textarea id="input" name="message" rows="20" cols="50">
+            <textarea id="input" name="message" rows="20" cols="50">
 
 
 </textarea>
-        <input id="send" type="button" value="Submit">
+            <input id="send" type="button" value="Submit">
 
-    </form>
-    <form>
+        </form>
+        <form>
 
-        <input type="file" id="myFile" name="filename">
-        <input type="submit">
-    </form>
-    
-
-    <p>
-        <div id=indhold>
-        </div>
+            <input type="file" id="myFile" name="filename">
+            <input type="submit">
+        </form>
 
 
-    </p>
+        <p>
+            <div id=indhold>
+            </div>
 
-</div>
+
+        </p>
+
+    </div>
+
+    <div>
+
+        <input type="button" id="signoff" value="Sign off">
+    </div>
 
 
 
