@@ -17,6 +17,7 @@ app.get('/', (req, res) => {
 
 var saveddata;
 var input;
+var img; 
 
 
 //connect to the database
@@ -38,6 +39,20 @@ client.connect(err => {
 
     });
 
+    const collectionIMG = client.db("brobygning").collection("foto.chunks");
+    collectionIMG.find({}).toArray((err, docs) => { //you can chosse filter inside the find
+        if (err) console.log(err);
+        console.log("Found the following img");
+        console.log(docs);
+        console.log(' ...Done ');
+
+        console.log('---------------------------------------');
+
+        img = docs;
+
+    });
+
+
 
 
 });
@@ -50,8 +65,9 @@ io.on('connection', function (socket) {
 
     socket.emit("saved", JSON.stringify(saveddata));
 
-    socket.on('indlæg', (data) => {
+    socket.on('indlæg', (data, fontdata) => {
         input = data;
+        datastil = fontdata;
 
         console.log("data" + data);
 
@@ -63,13 +79,34 @@ io.on('connection', function (socket) {
             const collection2 = client.db("brobygning").collection("test");
 
             collection2.insertOne({
-                indlæg: data
+                indlæg: data,
+                fontstil: datastil
+
             })
         })
 
 
 
+
+
+
     });
+
+    socket.on('file', (fil) => {
+
+
+        client.connect(err => {
+            if (err) console.log(err);
+
+            const collection3 = client.db("brobygning").collection("test");
+
+            collection3.insertOne({
+                fil: fil
+
+            })
+        })
+    });
+
 
     socket.on('login', (username, password) => {
         console.log(username + password);
@@ -88,6 +125,9 @@ io.on('connection', function (socket) {
 
 
     });
+
+
+
 
 });
 
