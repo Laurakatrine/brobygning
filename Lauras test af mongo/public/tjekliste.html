@@ -10,30 +10,62 @@
     $(document).ready(function() {
 
         let socket = io.connect('/');
-        
+
         $(function() {
 
             $("#navbar").load("navbar.html");
             var username = localStorage.getItem('gruppenavn');
-            
-                 if (localStorage.getItem("login") == "false") {
-            console.log("im not logged in");
 
-            $('#indhold').hide();
-        }
-        if (localStorage.getItem("login") == "true") {
-            console.log("im already logged in");
-            $('#indhold').show();
-        }
+            socket.emit('checkboxCheck', username);
 
-            if (localStorage.getItem("checkbox") == 1) {
-                $("#first").prop('checked', true);
+            socket.on('checkboxBack', (data) => {
+                var dataObj = JSON.parse(data);
                 
+                for(var i = 0; i<dataObj.length; i++){
+                    
+                    if(dataObj[i].checked == true){
+                        console.log(dataObj[i].id);
+                        var newData = "#"+dataObj[i].id;
+                       
+                    }
+                     console.log(newData);
+                    $(newData).prop('checked', true);
+                }
+                
+            });
+
+            if (localStorage.getItem("login") == "false") {
+                console.log("im not logged in");
+
+                $('#indhold').hide();
+            }
+            if (localStorage.getItem("login") == "true") {
+                console.log("im already logged in");
+                $('#indhold').show();
             }
 
-            $('#first').change(function() {
-                
-                console.log(username);
+            if (localStorage.getItem("checkbox") == 1) {
+                $("#checkbox1").prop('checked', true);
+
+            }
+            
+            $("#checks :checkbox").change(function(e){
+                if($(this).is(":checked")){
+                    
+                    var id = this.id;
+                    var checked = true;
+                    console.log(id);
+                    socket.emit('checkbox', username, id, checked);
+                } else {
+                    var id = this.id;
+                    var checked = false;
+                    console.log(id);
+                    socket.emit('checkbox', username, id, checked);
+                }
+            })
+
+            /*$('#checkbox1').change(function() {
+
                 if (this.checked) {
                     var checked = true;
                     socket.emit('checkbox', username, checked);
@@ -43,19 +75,19 @@
                 }
             });
 
-            $('#second').change(function() {
+            $('#checkbox2').change(function() {
                 if (this.checked) {} else {
 
                 }
             });
 
-            $('#third').change(function() {
+            $('#checkbox3').change(function() {
                 if (this.checked) {
                     console.log("Third one checked");
                 } else {
 
                 }
-            });
+            });*/
 
 
         });
@@ -70,13 +102,14 @@
     </div>
     <p>
         <div id=indhold>
-            <input type="checkbox" id="first">
-            <label for="first">Første opgave</label><br>
-            <input type="checkbox" id="second">
-            <label for="second">Anden opgave</label><br>
-            <input type="checkbox" id="third">
-            <label for="third">Tredje opgave</label><br>
-
+            <div id="checks">
+                <input type="checkbox" id="checkbox1">
+                <label for="checkbox1">Første opgave</label><br>
+                <input type="checkbox" id="checkbox2">
+                <label for="checkbox2">Anden opgave</label><br>
+                <input type="checkbox" id="checkbox3">
+                <label for="checkbox3">Tredje opgave</label><br>
+            </div>
 
 
             <p>Det her er tjeklisten</p>
