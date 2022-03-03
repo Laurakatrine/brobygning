@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+</head>
+<script src="/javascripts/jquery.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    $(document).ready(function() {
+
+        let socket = io.connect('/'); // default namespace for Socket.io
+
+
+        $(function() {
+            console.log("new page");
+            $("#navbar").load("navbar.html"); 
+            
+                 if (localStorage.getItem("login") == "false") {
+            console.log("im not logged in");
+
+            $('#indhold').hide();
+        }
+        if (localStorage.getItem("login") == "true") {
+            console.log("im already logged in");
+            $('#indhold').show();
+        }
+
+            socket.on("saved", (data) => {
+                console.log("saved " + data);
+                $('#indhold').text("");
+                var dataObj = JSON.parse(data);
+
+
+                for (i = 0; i < dataObj.length; i++) {
+                    $('#indhold').append(dataObj[i].indlæg + " & " + dataObj[i].brugernavn + "<br />");
+
+
+                    //console.log(dataObj[i].brugernavn);
+                }
+
+            });
+            
+
+        });
+    });
+</script>
+
+<body>
+<div id="navbar">
+       
+    </div>
+
+    <div>
+
+        <p>Her kan vi se indlæggene</p>
+
+
+    </div>
+    <p>
+            <div id=indhold>
+                <p>Det her er index siden!</p>
+            </div>
+
+
+        </p>
+
+
+
+</body>
+
+</html>

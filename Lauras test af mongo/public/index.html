@@ -3,6 +3,10 @@
 
 <head>
     <title></title>
+    <style>
+        
+
+    </style>
 </head>
 <script src="/javascripts/jquery.min.js"></script>
 <script src="/socket.io/socket.io.js"></script>
@@ -14,51 +18,51 @@
 
         let socket = io.connect('/'); // default namespace for Socket.io
 
-        if (localStorage.getItem("login") == "false") {
-            console.log("im not logged in");
-            $('#inputfield').hide();
-            $('#signoff').hide();
-        }
-        if (localStorage.getItem("login") == "true") {
-            console.log("im already logged in");
-            $('#inputfield').show();
-            $('#signoff').show();
-            $('#loginForm').hide();
-        }
 
 
         $(function() {
-            console.log("--------------");
+
+            if (localStorage.getItem("login") == "false") {
+                console.log("im not logged in");
+                $('#inputfield').hide();
+                $('#signoff').hide();
+                $('#indhold').hide();
+            }
+            if (localStorage.getItem("login") == "true") {
+                console.log("im already logged in");
+                $('#loginForm').hide();
+                $('#inputfield').show();
+                $('#signoff').show();
+                $('#indhold').show();
+            }
+
+            $("#navbar").load("navbar.html");
 
             $('#login').click(() => {
-                
+
                 username = $('#username').val();
                 password = $('#pwd').val();
 
                 socket.emit('login', username, password);
             });
-
-            $('#send').click(() => {
+            
+            /*$('#send').click(() => {
                 console.log("clikked");
                 var data = $('#input').val();
                 console.log(data);
-<<<<<<< HEAD
                 var fontdata = 'style="color:blue; font-family: verdana; font-size: 300%;" '
 
                 socket.emit('indlæg', data, fontdata);
-       
-=======
                 console.log(username);
 
                 socket.emit('indlæg', data, username);
->>>>>>> aa59b1aadc9064beaa4f87d823818f1d6b533950
 
                 console.log("send message to server");
                 $('#input').val('');
 
                 $('#input').text("");
 
-            });
+            });*/
 
             $('#signoff').click(() => {
                 console.log("signing off");
@@ -66,17 +70,18 @@
                 $('#inputfield').hide();
                 $('#signoff').hide();
                 $('#loginForm').show();
+                $('#indhold').hide();
             });
 
-            $("#newpage").click(() => {
-                $("#indhold").load("nyside.html");
+            /*$("#tjekliste").click(() => {
+                $("#indhold").load("tjekliste.html");
             });
             
             $("#homepage").click(() => {
                 $("#indhold").load("index.html");
             });
             
-             $('#filsub').click(() => {
+             /*$('#filsub').click(() => {
                 console.log("clikked");
                 
                 var fil = $('#myFile').val();
@@ -91,28 +96,33 @@
 
 
 
-            socket.on("saved", (data) => {
+            /*socket.on("saved", (data) => {
                 console.log("saved " + data);
                 $('#indhold').text("");
-                var dataObj = JSON.parse(data);
+                var dataObj = JSON.parse(data);*/
 
-
-                for (i = 0; i < dataObj.length; i++) {
-<<<<<<< HEAD
+           /* $("#hjem").click(() => {
+                $("#indhold").load("nyside.html");
+            });
+                /*for (i = 0; i < dataObj.length; i++) {
                     //$('#indhold').append(dataObj[i].indlæg + "<br />");
                // $('#indhold').append('<p style="color:red; font-family: verdana; font-size: 300%;" >' + dataObj[i].indlæg + '</p> </br>');
                 $('#indhold').append('<p ' + dataObj[i].fontstil +  '>' + dataObj[i].indlæg + '</p> </br>');
                     
-                   
-=======
-                    $('#indhold').append(dataObj[i].indlæg + " & " + dataObj[i].brugernavn + "<br />");
+                    $('#indhold').append(dataObj[i].indlæg + " & " + dataObj[i].brugernavn + "<br />");*/
 
+           /* $("#seindlæg").click(() => {
+                $("#indhold").load("seindlæg.html");
+            });
+
+            $("#opret").click(() => {
+                $("#indhold").load("opret.html");
+            });
 
                     //console.log(dataObj[i].brugernavn);
->>>>>>> aa59b1aadc9064beaa4f87d823818f1d6b533950
-                }
 
-            });
+                }*/
+
 
             socket.on("logging_in", (data) => {
                 //console.log("logging in " + data);
@@ -137,8 +147,11 @@
                     $('#inputfield').show();
                     $('#loginForm').hide();
                     $('#signoff').show();
+                    $('#indhold').show();
                     localStorage.setItem("login", "true");
+                    localStorage.setItem("gruppenavn", username)
                     console.log(localStorage.getItem("login"));
+                    $('#navbar').show();
                 } else {
                     console.log("WRONG")
                 }
@@ -150,16 +163,41 @@
         });
     });
 
+    /*$('#send').click(() => {
+                console.log("clikked");
+                var data = $('#input').val();
+                console.log(data);
+                console.log(username);
+
+                socket.emit('indlæg', data, username);
+
+                console.log("send message to server");
+                $('#input').val('');
+
+                $('#input').text("");
+
+            });
+
+            socket.on("saved", (data) => {
+                console.log("saved " + data);
+                $('#indhold').text("");
+                var dataObj = JSON.parse(data);
+
+
+                for (i = 0; i < dataObj.length; i++) {
+                    $('#indhold').append(dataObj[i].indlæg + " & " + dataObj[i].brugernavn + "<br />");
+
+
+                    //console.log(dataObj[i].brugernavn);
+                }
+
+            });*/
+
 </script>
 
 <body>
     <div id="navbar">
-        <nav>
-            <ul class="nav">
-                <li><a id="homepage" href="#">Home</a></li>
-                <li><a id="newpage" href="#">New page</a></li>
-            </ul>
-        </nav>
+
     </div>
     <div id="loginForm">
         <form>
@@ -174,7 +212,7 @@
         </form>
     </div>
 
-    <div id="inputfield">
+    <!--<div id="inputfield">
         <form>
 
 
@@ -196,16 +234,20 @@
 =======
             <input type="file" id="myFile" name="filename">
             <input type="submit">
+<<<<<<< Updated upstream
         </form>
 >>>>>>> aa59b1aadc9064beaa4f87d823818f1d6b533950
+=======
+        </form> -->
 
 
-        <p>
-            <div id=indhold>
-            </div>
+    <p>
+        <div id=indhold>
+            <p>Det her er index siden!</p>
+        </div>
 
 
-        </p>
+    </p>
 
     </div>
 

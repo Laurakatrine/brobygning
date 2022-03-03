@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <style>
+        li {
+            display: inline;
+        }
+
+    </style>
+</head>
+<script src="/javascripts/jquery.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    $(document).ready(function() {
+        $(function() {
+
+            $("#logud").click(() => {
+                localStorage.setItem("login", "false");
+            });
+
+            if (localStorage.getItem("login") == "false") {
+                $('#navbar').hide();
+            } else {
+                $('#navbar').show();
+            }
+
+        });
+    });
+
+</script>
+
+<body>
+
+    <div id="navbar">
+        <nav>
+            <ul class="nav">
+                <li><a id="hjem" href="index.html">Hjem</a></li>
+                <li><a id="tjekliste" href="tjekliste.html">Tjekliste</a></li>
+                <li><a id="opret" href="opret.html">Opret indlæg</a></li>
+                <li><a id="seindlæg" href="seindlæg.html">Se indlæg</a></li>
+                <li><a id="logud" href="index.html">Log af</a></li>
+            </ul>
+        </nav>
+    </div>
+
+</body>
+
+</html>

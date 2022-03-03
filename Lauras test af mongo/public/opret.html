@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+</head>
+<script src="/javascripts/jquery.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    $(document).ready(function() {
+
+        let socket = io.connect('/'); // default namespace for Socket.io
+        //var username = localStorage.getItem("brugernavn");
+        
+        
+
+        $(function() {
+            console.log("new page");
+            $("#navbar").load("navbar.html"); 
+            
+            if (localStorage.getItem("login") == "false") {
+            console.log("im not logged in");
+            $('#inputfield').hide();
+            $('#indhold').hide();
+        }
+        if (localStorage.getItem("login") == "true") {
+            console.log("im already logged in");
+            $('#inputfield').show();
+            $('#indhold').show();
+        }
+
+
+            $('#send').click(() => {
+                console.log("clikked");
+                var username = localStorage.getItem("gruppenavn");
+                var data = $('#input').val();
+                console.log(data);
+                console.log(username);
+
+                socket.emit('indlæg', data, username);
+
+                console.log("send message to server");
+                $('#input').val('');
+
+                $('#input').text("");
+
+            });
+            
+            /*$('#filsub').click(() => {
+                console.log("clikked");
+                
+                var fil = $('#myFile').val();
+                console.log(fil);
+                
+                socket.emit('file', fil);
+       
+
+                console.log("send message to server");
+             
+            });*/
+        });
+    });
+</script>
+
+<body>
+<div id="navbar">
+       
+    </div>
+    <div id="inputfield">
+        <form>
+
+
+
+            <textarea id="input" name="message" rows="20" cols="50">
+
+
+</textarea>
+            <input id="send" type="button" value="Submit">
+
+        </form>
+        <form>
+
+        <input type="file" id="myFile" name="filename">
+        <input type="submit" id="filsub">
+            
+    </form>
+        <form>
+
+            <!--<input type="file" id="myFile" name="filename">
+            <input type="submit">-->
+        </form>
+        
+
+
+    <div>
+
+        <p>Her kan vi oprette indlæggene</p>
+
+
+    </div>
+<p>
+            <div id=indhold>
+                <p>Det her er index siden!</p>
+            </div>
+
+
+        </p>
+
+
+</body>
+
+</html>

@@ -25,7 +25,7 @@ client.connect(err => {
     if (err) console.log(err);
 
     const collection1 = client.db("brobygning").collection("test");
-
+    
     //find the playerdata 
     collection1.find({}).toArray((err, docs) => { //you can chosse filter inside the find
         if (err) console.log(err);
@@ -39,7 +39,7 @@ client.connect(err => {
 
     });
 
-    const collectionIMG = client.db("brobygning").collection("foto.files");
+    /*const collectionIMG = client.db("brobygning").collection("foto.files");
     collectionIMG.find({}).toArray((err, docs) => { //you can chosse filter inside the find
         if (err) console.log(err);
         console.log("Found the following img");
@@ -50,7 +50,7 @@ client.connect(err => {
 
         img = docs;
 
-    });
+    });*/
 
 
 
@@ -60,18 +60,17 @@ client.connect(err => {
 
 
 
-/*
+
 io.on('connection', function (socket) {
 
+    
     socket.emit("saved", JSON.stringify(saveddata));
+    
 
-<<<<<<< HEAD
-    socket.on('indlæg', (data, fontdata) => {
-=======
+    //socket.on('indlæg', (data, fontdata) => {
     socket.on('indlæg', (data, username) => {
->>>>>>> aa59b1aadc9064beaa4f87d823818f1d6b533950
         input = data;
-        datastil = fontdata;
+        //datastil = fontdata;
 
         console.log("data" + data + "username: " + username);
 
@@ -84,23 +83,18 @@ io.on('connection', function (socket) {
 
             collection2.insertOne({
                 indlæg: data,
-<<<<<<< HEAD
-                fontstil: datastil
-
-=======
+                //fontstil: datastil
                 brugernavn: username
->>>>>>> aa59b1aadc9064beaa4f87d823818f1d6b533950
             })
         })
 
-*/
 
 
 
 
     });
 
-    socket.on('file', (fil) => {
+    /*socket.on('file', (fil) => {
 
 
         client.connect(err => {
@@ -113,7 +107,7 @@ io.on('connection', function (socket) {
 
             })
         })
-    });
+    });*/
 
 
     socket.on('login', (username, password) => {
@@ -134,7 +128,31 @@ io.on('connection', function (socket) {
 
     });
 
-
+socket.on('checkbox', (data, checked) => {
+   console.log(data); 
+   console.log(checked); 
+    
+    const collectionGruppedata = client.db("brobygning").collection("gruppedata");
+    collectionGruppedata.find({}).toArray((err, docs) => { //you can chosse filter inside the find
+            if (err) console.log(err);
+            console.log("Found the following gruppedata");
+            console.log(docs);
+        });
+    
+    collectionGruppedata.find({gruppenavn : data})
+    
+    try{
+        collectionGruppedata.updateOne({gruppenavn: 'gruppe1'}, {$set: {checked : false}});
+    } catch(e){
+        print(e);
+    }
+    
+    /*collectionGruppedata.insertOne({
+                gruppenavn: data,
+                checked: checked
+            })*/
+    
+});
 
 
 });

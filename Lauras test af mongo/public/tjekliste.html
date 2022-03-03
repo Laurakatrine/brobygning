@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+</head>
+<script src="/javascripts/jquery.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    $(document).ready(function() {
+
+        let socket = io.connect('/');
+        
+        $(function() {
+
+            $("#navbar").load("navbar.html");
+            var username = localStorage.getItem('gruppenavn');
+            
+                 if (localStorage.getItem("login") == "false") {
+            console.log("im not logged in");
+
+            $('#indhold').hide();
+        }
+        if (localStorage.getItem("login") == "true") {
+            console.log("im already logged in");
+            $('#indhold').show();
+        }
+
+            if (localStorage.getItem("checkbox") == 1) {
+                $("#first").prop('checked', true);
+                
+            }
+
+            $('#first').change(function() {
+                
+                console.log(username);
+                if (this.checked) {
+                    var checked = true;
+                    socket.emit('checkbox', username, checked);
+                } else {
+                    checked = false;
+                    socket.emit('checkbox', username, checked);
+                }
+            });
+
+            $('#second').change(function() {
+                if (this.checked) {} else {
+
+                }
+            });
+
+            $('#third').change(function() {
+                if (this.checked) {
+                    console.log("Third one checked");
+                } else {
+
+                }
+            });
+
+
+        });
+
+    });
+
+</script>
+
+<body>
+    <div id="navbar">
+
+    </div>
+    <p>
+        <div id=indhold>
+            <input type="checkbox" id="first">
+            <label for="first">Første opgave</label><br>
+            <input type="checkbox" id="second">
+            <label for="second">Anden opgave</label><br>
+            <input type="checkbox" id="third">
+            <label for="third">Tredje opgave</label><br>
+
+
+
+            <p>Det her er tjeklisten</p>
+        </div>
+
+
+    </p>
+
+    <div>
+
+
+
+    </div>
+
+
+
+</body>
+
+</html>
