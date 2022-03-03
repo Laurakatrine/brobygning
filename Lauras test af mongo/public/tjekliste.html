@@ -43,13 +43,43 @@
                 console.log("im already logged in");
                 $('#indhold').show();
             }
-
-            if (localStorage.getItem("checkbox") == 1) {
-                $("#checkbox1").prop('checked', true);
-
-            }
             
-            $("#checks :checkbox").change(function(e){
+            var nr = 3;
+
+            $('#moreChecks').click(()=> {
+                $('#checks').append(
+                $(document.createElement('input')).prop({
+                    id: 'checkbox'+(nr+1),
+                    type: 'checkbox'
+                })).append($(document.createElement('label')).prop({
+                    for: 'checkbox'+(nr+1)
+                }).html('Ny tjekboks')
+                ). append(document.createElement('br'));
+                nr = nr + 1;
+            });
+            
+            
+            //man kan oprette nye tjekbokse og den registrerer deres dynamiske id.
+            //de skal gemmes et sted.. så de bliver der istedet for at forsvinde
+            $('#checks').on('change', 'input[type="checkbox"]', (function(){
+                console.log(this.id);
+                if($(this).is(":checked")){
+                    
+                    var id = this.id;
+                    var checked = true;
+                    console.log("id is"+id);
+                    //socket.emit('checkbox', username, id, checked);
+                } else {
+                    var id = this.id;
+                    var checked = false;
+                    console.log("id is "+id);
+                    //socket.emit('checkbox', username, id, checked);
+                }
+            }))
+
+            
+            /*$("#checks :checkbox").change(function(e){
+                console.log("Its changing");
                 if($(this).is(":checked")){
                     
                     var id = this.id;
@@ -62,33 +92,9 @@
                     console.log(id);
                     socket.emit('checkbox', username, id, checked);
                 }
-            })
-
-            /*$('#checkbox1').change(function() {
-
-                if (this.checked) {
-                    var checked = true;
-                    socket.emit('checkbox', username, checked);
-                } else {
-                    checked = false;
-                    socket.emit('checkbox', username, checked);
-                }
-            });
-
-            $('#checkbox2').change(function() {
-                if (this.checked) {} else {
-
-                }
-            });
-
-            $('#checkbox3').change(function() {
-                if (this.checked) {
-                    console.log("Third one checked");
-                } else {
-
-                }
             });*/
-
+            
+            
 
         });
 
@@ -113,6 +119,7 @@
 
 
             <p>Det her er tjeklisten</p>
+            <input type="button" id="moreChecks" value="Tilføj">
         </div>
 
 
