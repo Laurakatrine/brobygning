@@ -1,5 +1,5 @@
 module.exports = {
-  url: "mongodb://localhost:27017/",
+  url: "mongodb+srv://gruppe1:brobygning@cluster0.o8mem.mongodb.net/brobygning?retryWrites=true&w=majority",
   database: "brobygning",
-  imgBucket: "foto",
+  imgBucket: "photos",
 };

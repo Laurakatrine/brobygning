@@ -39,7 +39,7 @@ client.connect(err => {
 
     });
 
-    const collectionIMG = client.db("brobygning").collection("foto.chunks");
+    const collectionIMG = client.db("brobygning").collection("foto.files");
     collectionIMG.find({}).toArray((err, docs) => { //you can chosse filter inside the find
         if (err) console.log(err);
         console.log("Found the following img");
@@ -60,7 +60,7 @@ client.connect(err => {
 
 
 
-
+/*
 io.on('connection', function (socket) {
 
     socket.emit("saved", JSON.stringify(saveddata));
@@ -93,7 +93,7 @@ io.on('connection', function (socket) {
             })
         })
 
-
+*/
 
 
 

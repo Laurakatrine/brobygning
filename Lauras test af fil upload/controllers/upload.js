@@ -46,6 +46,7 @@ const getListFiles = async (req, res) => {
     await mongoClient.connect();
     const database = mongoClient.db(dbConfig.database);
     const images = database.collection(dbConfig.imgBucket + ".files");
+      
     const cursor = images.find({});
     if ((await cursor.count()) === 0) {
       return res.status(500).send({
@@ -57,7 +58,7 @@ const getListFiles = async (req, res) => {
       fileInfos.push({
         name: doc.filename,
         url: baseUrl + doc.filename,
-      });
+      })
     });
     return res.status(200).send(fileInfos);
   } catch (error) {
@@ -73,9 +74,14 @@ const download = async (req, res) => {
     const bucket = new GridFSBucket(database, {
       bucketName: dbConfig.imgBucket,
     });
-    let downloadStream = bucket.openDownloadStreamByName(req.params.name);
+    let downloadStream = bucket.openDownloadStreamByName("1646215056500-bezkoder-Logo web.png");
+   
+      
     downloadStream.on("data", function (data) {
-      return res.status(200).write(data);
+      //return res.status(200).write(data);
+        return res.sendFile(__dirname + '../views/foto.html');
+        //overvej om den her funktion kan flyttes ind i din html fil i stedet. 
+        
     });
     downloadStream.on("error", function (err) {
       return res.status(404).send({ message: "Cannot download the Image!" });
