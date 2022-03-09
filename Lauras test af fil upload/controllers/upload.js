@@ -74,19 +74,20 @@ const download = async (req, res) => {
     const bucket = new GridFSBucket(database, {
       bucketName: dbConfig.imgBucket,
     });
-    let downloadStream = bucket.openDownloadStreamByName("1646215056500-bezkoder-Logo web.png");
+    let downloadStream = bucket.openDownloadStreamByName(req.params.name);
    
       
     downloadStream.on("data", function (data) {
-      //return res.status(200).write(data);
-        return res.sendFile(__dirname + '../views/foto.html');
-        //overvej om den her funktion kan flyttes ind i din html fil i stedet. 
+        return res.status(200).write(data);
+        console.log("sendt");
+       
         
     });
     downloadStream.on("error", function (err) {
       return res.status(404).send({ message: "Cannot download the Image!" });
     });
     downloadStream.on("end", () => {
+    //return res.send("hej");    
       return res.end();
     });
   } catch (error) {
@@ -95,6 +96,8 @@ const download = async (req, res) => {
     });
   }
 };
+
+
 module.exports = {
   uploadFiles,
   getListFiles,
