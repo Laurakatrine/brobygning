@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
 
 var saveddata;
 var input;
-var img; 
+var img;
 
 
 //connect to the database
@@ -25,7 +25,7 @@ client.connect(err => {
     if (err) console.log(err);
 
     const collection1 = client.db("brobygning").collection("test");
-    
+
     //find the playerdata 
     collection1.find({}).toArray((err, docs) => { //you can chosse filter inside the find
         if (err) console.log(err);
@@ -63,9 +63,9 @@ client.connect(err => {
 
 io.on('connection', function (socket) {
 
-    
+
     socket.emit("saved", JSON.stringify(saveddata));
-    
+
 
     //socket.on('indlæg', (data, fontdata) => {
     socket.on('indlæg', (data, username) => {
@@ -128,30 +128,69 @@ io.on('connection', function (socket) {
 
     });
 
-socket.on('checkbox', (data, checked) => {
-   console.log(data); 
-   console.log(checked); 
-    
-    const collectionGruppedata = client.db("brobygning").collection("gruppedata");
-    collectionGruppedata.find({}).toArray((err, docs) => { //you can chosse filter inside the find
+    socket.on('checkbox', (data, id, checked) => {
+            console.log(data);
+            console.log(checked);
+            console.log(id);
+
+            const collectionGruppedata = client.db("brobygning").collection("gruppedata");
+            collectionGruppedata.find({
+                gruppenavn: data,
+                id: id
+            }).count().then((n) => {
+                    console.log('There are ' + n + ' documents');
+                    if (n == 0) {
+                        collectionGruppedata.insertOne({
+                            gruppenavn: data,
+                            id: id,
+                            checked: checked
+                        });
+                    } else {
+                        collectionGruppedata.findOneAndUpdate({
+                                gruppenavn: data,
+                                id: id
+                            }, {
+                                $set: {
+                                    checked: checked
+                                }
+                            }
+                        )}
+            });
+
+
+        /*collectionGruppedata.find({}).toArray((err, docs) => { //you can chosse filter inside the find
             if (err) console.log(err);
             console.log("Found the following gruppedata");
             console.log(docs);
         });
-    
-    collectionGruppedata.find({gruppenavn : data})
-    
-    try{
-        collectionGruppedata.updateOne({gruppenavn: 'gruppe1'}, {$set: {checked : false}});
-    } catch(e){
-        print(e);
-    }
-    
-    /*collectionGruppedata.insertOne({
-                gruppenavn: data,
+
+        collectionGruppedata.findOneAndUpdate({
+            gruppenavn: data
+        }, {
+            $set: {
                 checked: checked
-            })*/
-    
+            }
+        });*/
+
+    });
+
+socket.on('checkboxCheck', (data) => {
+    console.log(data);
+
+    const collectionGruppedata = client.db("brobygning").collection("gruppedata");
+
+    collectionGruppedata.find({
+        gruppenavn: data
+    }).toArray((err, docs) => { //you can chosse filter inside the find
+        if (err) console.log(err);
+        console.log("Found the following gruppedata");
+        console.log(docs);
+        var foundData = docs;
+
+        socket.emit('checkboxBack', JSON.stringify(foundData));
+
+    });
+
 });
 
 
