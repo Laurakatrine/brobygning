@@ -11,23 +11,41 @@
 
         let socket = io.connect('/'); // default namespace for Socket.io
         //var username = localStorage.getItem("brugernavn");
+
+        let imagesPreview = function(input, placeToInsertImagePreview) {
+                if (input.files) {
+                    let filesAmount = input.files.length;
+                    for (i = 0; i < filesAmount; i++) {
+                        let reader = new FileReader();
+                        reader.onload = function(event) {
+                            $($.parseHTML("<img>"))
+                                .attr("src", event.target.result)
+                                .appendTo(placeToInsertImagePreview);
+                        };
+                        reader.readAsDataURL(input.files[i]);
+                    }
+                }
+            };
         
-        
+        $("#input-files").on("change", function() {
+                imagesPreview(this, "div.preview-images");
+            });
+
 
         $(function() {
             console.log("new page");
-            $("#navbar").load("navbar.html"); 
-            
+            $("#navbar").load("navbar.html");
+
             if (localStorage.getItem("login") == "false") {
-            console.log("im not logged in");
-            $('#inputfield').hide();
-            $('#indhold').hide();
-        }
-        if (localStorage.getItem("login") == "true") {
-            console.log("im already logged in");
-            $('#inputfield').show();
-            $('#indhold').show();
-        }
+                console.log("im not logged in");
+                $('#inputfield').hide();
+                $('#indhold').hide();
+            }
+            if (localStorage.getItem("login") == "true") {
+                console.log("im already logged in");
+                $('#inputfield').show();
+                $('#indhold').show();
+            }
 
 
             $('#send').click(() => {
@@ -45,7 +63,7 @@
                 $('#input').text("");
 
             });
-            
+
             /*$('#filsub').click(() => {
                 console.log("clikked");
                 
@@ -60,11 +78,12 @@
             });*/
         });
     });
+
 </script>
 
 <body>
-<div id="navbar">
-       
+    <div id="navbar">
+
     </div>
     <div id="inputfield">
         <form>
@@ -78,27 +97,29 @@
             <input id="send" type="button" value="Submit">
 
         </form>
-        <form>
+        <form action="/upload" method="POST" enctype=multipart/form-data>
 
-        <input type="file" id="myFile" name="filename">
-        <input type="submit" id="filsub">
+            <div class="form-group">
+                        <input type="file" name="file" multiple id="input-files" class="form-control-file border" />
+                    </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
             
-    </form>
-        <form>
-
             <!--<input type="file" id="myFile" name="filename">
-            <input type="submit">-->
+            <input type="submit" id="filsub" value="Submit">-->
+
         </form>
-        
+        <div class="preview-images">
+        </div>
 
 
-    <div>
 
-        <p>Her kan vi oprette indlæggene</p>
+        <div>
+
+            <p>Her kan vi oprette indlæggene</p>
 
 
-    </div>
-<p>
+        </div>
+        <p>
             <div id=indhold>
                 <p>Det her er index siden!</p>
             </div>

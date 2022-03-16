@@ -8,23 +8,76 @@
 <script src="/socket.io/socket.io.js"></script>
 <script>
     $(document).ready(function() {
+        var files = [];
+        var chunks = [];
+
+        var buttonPressed = false;
+        var fotoData;
+        var nr = 0;
 
         let socket = io.connect('/'); // default namespace for Socket.io
 
+        //
+        console.log("button: " + buttonPressed);
+        $.get('/chunks', function(data) {
+            for (i = 0; i < data.length; i++) {
+                chunks.push(data[i]);
+            }
+            console.log(chunks);
+        }).done(function() {
+            $.get('/files', function(data) {
+                for (i = 0; i < data.length; i++) {
+                    files.push(data[i]);
+                }
+                console.log(files);
+                console.log("Her: " + files[0].id + files[0].type);
+
+
+                for (i = 0; i < chunks.length; i++) {
+
+                    if (files[i].id == chunks[i].files_id) {
+                        fotodata = chunks[i].data;
+                        console.log("data :" + i);
+
+
+                        $('#fotos').append($(document.createElement('img')).prop({
+                            id: 'foto' + (nr + 1)
+                        }));
+                        nr = nr + 1;
+
+                        var numImg = $('div#fotos img').length;
+                        console.log(numImg);
+                        
+                        for(x=0; x<=numImg; x++){
+                            console.log("hej");
+                            $('#foto'+(x+1)).attr("src", "data:image/" + files[x].type + ";base64," + chunks[x].data);
+                            }
+
+                    }
+                }
+                var numImg = $('div#fotos img').length;
+                alert(numImg);
+
+                /*for(i=0;i<numImg; i++){
+                    console.log("this is img");
+                    $('#fotos'+i)
+                }*/
+            });
+        });
 
         $(function() {
             console.log("new page");
-            $("#navbar").load("navbar.html"); 
-            
-                 if (localStorage.getItem("login") == "false") {
-            console.log("im not logged in");
+            $("#navbar").load("navbar.html");
 
-            $('#indhold').hide();
-        }
-        if (localStorage.getItem("login") == "true") {
-            console.log("im already logged in");
-            $('#indhold').show();
-        }
+            if (localStorage.getItem("login") == "false") {
+                console.log("im not logged in");
+
+                $('#indhold').hide();
+            }
+            if (localStorage.getItem("login") == "true") {
+                console.log("im already logged in");
+                $('#indhold').show();
+            }
 
             socket.on("saved", (data) => {
                 console.log("saved " + data);
@@ -40,30 +93,35 @@
                 }
 
             });
-            
+
 
         });
     });
+
 </script>
 
 <body>
-<div id="navbar">
-       
+    <div id="navbar">
+
     </div>
 
     <div>
 
         <p>Her kan vi se indlæggene</p>
+        <div id="fotos">
+        </div>
+        <!--<img id="foto">-->
 
 
     </div>
     <p>
-            <div id=indhold>
-                <p>Det her er index siden!</p>
-            </div>
+        <div id=indhold>
+            <p>Det her er index siden!</p>
+
+        </div>
 
 
-        </p>
+    </p>
 
 
 

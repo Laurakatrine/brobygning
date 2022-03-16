@@ -9,6 +9,8 @@ const client = new MongoClient(uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
+initRoutes = require('./routes');
+initRoutes(app);
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', (req, res) => {
