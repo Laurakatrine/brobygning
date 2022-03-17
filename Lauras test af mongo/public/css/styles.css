@@ -1,0 +1,50 @@
+@font-face {
+    font-family: 'Svendborg Erhvervsskole';
+    font-style: normal;
+    font-weight: 100;
+    src: url("Museo/MuseoSans_100.otf") format("opentype");
+}
+
+@font-face {
+    font-family: 'Svendborg Erhvervsskole';
+    font-style: normal;
+    font-weight: 300;
+    src: url("Museo/MuseoSans_300.otf") format("opentype");
+}
+
+@font-face {
+    font-family: 'Svendborg Erhvervsskole';
+    font-style: normal;
+    font-weight: 500;
+    src: url("Museo/MuseoSans_500.otf") format("opentype");
+}
+
+@font-face {
+    font-family: 'Svendborg Erhvervsskole';
+    font-style: normal;
+    font-weight: 700;
+    src: url("Museo/MuseoSans_700.otf") format("opentype");
+}
+
+@font-face {
+    font-family: 'Svendborg Erhvervsskole';
+    font-style: normal;
+    font-weight: 900;
+    src: url("Museo/MuseoSans_900.otf") format("opentype");
+}
+
+p {
+    font-family: 'Svendborg Erhvervsskole';
+    font-weight: 100;
+}
+
+h2 {
+    font-family: 'Svendborg Erhvervsskole';
+    font-weight: 900;
+}
+
+.nav {
+    font-family: 'Svendborg Erhvervsskole';
+    font-weight: 300;
+    display: inline;
+}
