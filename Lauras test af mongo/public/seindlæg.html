@@ -16,6 +16,8 @@
         var nr = 0;
 
         let socket = io.connect('/'); // default namespace for Socket.io
+        
+        socket.emit("readyLoad");
 
         //
         console.log("button: " + buttonPressed);
@@ -64,6 +66,8 @@
                 }*/
             });
         });
+        
+        
 
         $(function() {
             console.log("new page");

@@ -66,7 +66,27 @@ client.connect(err => {
 io.on('connection', function (socket) {
 
 
-    socket.emit("saved", JSON.stringify(saveddata));
+    socket.on("readyLoad", function () {
+        client.connect(err => {
+            if (err) console.log(err);
+
+            const collection1 = client.db("brobygning").collection("test");
+
+            //find the playerdata 
+            collection1.find({}).toArray((err, docs) => { //you can chosse filter inside the find
+                if (err) console.log(err);
+                console.log("Found the following records");
+                console.log(docs);
+                console.log(' ...Done ');
+
+                console.log('---------------------------------------');
+
+                saveddata = docs;
+
+            });
+            socket.emit("saved", JSON.stringify(saveddata));
+        });
+    });
 
 
     //socket.on('indlæg', (data, fontdata) => {
