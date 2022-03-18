@@ -14,9 +14,11 @@
         var buttonPressed = false;
         var fotoData;
         var nr = 0;
+        var lastChunckName;
+        var fotoArray = [];
 
         let socket = io.connect('/'); // default namespace for Socket.io
-        
+
         socket.emit("readyLoad");
 
         //
@@ -33,41 +35,57 @@
                 }
                 console.log(files);
                 console.log("Her: " + files[0].id + files[0].type);
+                console.log("længde" + chunks.length);
 
 
-                for (i = 0; i < chunks.length; i++) {
 
-                    if (files[i].id == chunks[i].files_id) {
-                        fotodata = chunks[i].data;
-                        console.log("data :" + i);
+                for (j = 0; j < files.length; j++) {
+
+                    for (i = 0; i < chunks.length; i++) {
+
+
+                        if (chunks[i].files_id == files[j].id) {
+
+
+                            if (lastChunckName == chunks[i].files_id) {
+                                fotoArray[chunks[i].nr] = chunks[i].data;
+
+                            } else {
+
+                                lastChunckName = chunks[i].files_id;
+                                fotoArray[chunks[i].nr] = chunks[i].data;
+                                console.log("nyt billede" + chunks[i].files_id);
+                            }
+
+                        }
+
 
 
                         $('#fotos').append($(document.createElement('img')).prop({
-                            id: 'foto' + (nr + 1)
+                            id: 'foto' + (j)
                         }));
-                        nr = nr + 1;
 
-                        var numImg = $('div#fotos img').length;
-                        console.log(numImg);
-                        
-                        for(x=0; x<=numImg; x++){
-                            console.log("hej");
-                            $('#foto'+(x+1)).attr("src", "data:image/" + files[x].type + ";base64," + chunks[x].data);
-                            }
+                        fotoData = "";
+
+                        for (k = 0; k < fotoArray.length; k++) {
+                            fotoData += fotoArray[k];
+
+                        }
+
+
+                        $('#foto' + (j)).attr("src", "data:image/" + files[j].type + ";base64," + fotoData);
+
+
+
+
 
                     }
                 }
-                var numImg = $('div#fotos img').length;
-                alert(numImg);
 
-                /*for(i=0;i<numImg; i++){
-                    console.log("this is img");
-                    $('#fotos'+i)
-                }*/
             });
         });
-        
-        
+
+
 
         $(function() {
             console.log("new page");
@@ -114,15 +132,15 @@
         <p>Her kan vi se indlæggene</p>
         <div id="fotos">
         </div>
-        <!--<img id="foto">-->
+        <img id="foto">
 
 
     </div>
     <p>
-        <div id=indhold>
-            <p>Det her er index siden!</p>
+    <div id=indhold>
+        <p>Det her er index siden!</p>
 
-        </div>
+    </div>
 
 
     </p>

@@ -50,6 +50,7 @@ const getListFilesChunks = async(req, res) => {
             chunksInfos.push({
                 files_id: doc.files_id,
                 data: doc.data,
+                nr: doc.n,
             })
         });
 
