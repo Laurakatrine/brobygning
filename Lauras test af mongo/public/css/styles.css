@@ -43,8 +43,56 @@ h2 {
     font-weight: 900;
 }
 
-.nav {
+.nav li {
+    text-align: center;
+    list-style: none;
     font-family: 'Svendborg Erhvervsskole';
-    font-weight: 300;
+    font-weight: 400;
+    font-size: 60%;
+}
+
+#tlf {
+    display: inline-flex;
+    position: relative;
+    float: left;
+    padding-left: 3%;
+}
+
+#brobygning,
+#medarbejder,
+#job,
+#presse,
+#skoler,
+#kontakt {
+    display: inline-flex;
+    position: relative;
+    float: right;
+    padding-right: 3%;
+}
+
+.nav2 li {
+    list-style: none;
+    text-align: center;
+    font-family: 'Svendborg Erhvervsskole';
+    font-weight: 500;
+    font-size: 100%;
     display: inline;
+}
+
+#logo {
+    width: 40%; 
+    height: 40%;
+    display: inline-flex;
+    float: left;
+}
+
+#journal, #mødelev, #værktøj, #materialer, #opgaven {
+    display: inline-flex;
+    float: right;
+    position: relative; 
+    padding: 2%2%2%2%;
+}
+
+#spacer {
+    padding: 1%1%1%1%;
 }

@@ -5,7 +5,7 @@
     <title></title>
     <link rel="stylesheet" href="css/styles.css">
     <style>
-        
+
 
     </style>
 </head>
@@ -46,7 +46,7 @@
 
                 socket.emit('login', username, password);
             });
-            
+
             /*$('#send').click(() => {
                 console.log("clikked");
                 var data = $('#input').val();
@@ -102,27 +102,27 @@
                 $('#indhold').text("");
                 var dataObj = JSON.parse(data);*/
 
-           /* $("#hjem").click(() => {
-                $("#indhold").load("nyside.html");
-            });
-                /*for (i = 0; i < dataObj.length; i++) {
-                    //$('#indhold').append(dataObj[i].indlæg + "<br />");
-               // $('#indhold').append('<p style="color:red; font-family: verdana; font-size: 300%;" >' + dataObj[i].indlæg + '</p> </br>');
-                $('#indhold').append('<p ' + dataObj[i].fontstil +  '>' + dataObj[i].indlæg + '</p> </br>');
-                    
-                    $('#indhold').append(dataObj[i].indlæg + " & " + dataObj[i].brugernavn + "<br />");*/
+            /* $("#hjem").click(() => {
+                 $("#indhold").load("nyside.html");
+             });
+                 /*for (i = 0; i < dataObj.length; i++) {
+                     //$('#indhold').append(dataObj[i].indlæg + "<br />");
+                // $('#indhold').append('<p style="color:red; font-family: verdana; font-size: 300%;" >' + dataObj[i].indlæg + '</p> </br>');
+                 $('#indhold').append('<p ' + dataObj[i].fontstil +  '>' + dataObj[i].indlæg + '</p> </br>');
+                     
+                     $('#indhold').append(dataObj[i].indlæg + " & " + dataObj[i].brugernavn + "<br />");*/
 
-           /* $("#seindlæg").click(() => {
-                $("#indhold").load("seindlæg.html");
-            });
+            /* $("#seindlæg").click(() => {
+                 $("#indhold").load("seindlæg.html");
+             });
 
-            $("#opret").click(() => {
-                $("#indhold").load("opret.html");
-            });
+             $("#opret").click(() => {
+                 $("#indhold").load("opret.html");
+             });
 
-                    //console.log(dataObj[i].brugernavn);
+                     //console.log(dataObj[i].brugernavn);
 
-                }*/
+                 }*/
 
 
             socket.on("logging_in", (data) => {
@@ -213,11 +213,7 @@
         </form>
     </div>
     <div>
-        <h2>Sej overskrift</h2>
-        <p>
-        Total sejt indlæg
-        </p>
-        
+
     </div>
     <!--<div id="inputfield">
         <form>
