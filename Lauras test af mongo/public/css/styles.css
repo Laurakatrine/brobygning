@@ -231,7 +231,8 @@ th td
 
 .footerTop {
     display: flex;
-    background-color: lightgray;
+    background-color: #d9dee2;
+    color:#455b6e;
 }
 #overlay 
 {
