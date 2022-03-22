@@ -8,6 +8,9 @@
 <script src="/socket.io/socket.io.js"></script>
 <script>
     $(document).ready(function() {
+        
+        $("#navbar").load("navbar.html");
+        $("#ekstraNav").load("navbarEkstra.html");
         $("footer").load("footer.html");
         
         var files = [];
@@ -93,7 +96,7 @@
 
         $(function() {
             console.log("new page");
-            $("#navbar").load("navbar.html");
+            
 
             if (localStorage.getItem("login") == "false") {
                 console.log("im not logged in");
@@ -129,6 +132,9 @@
 <body>
     <div id="navbar">
 
+    </div>
+    
+    <div id="ekstraNav">
     </div>
 
     <div>

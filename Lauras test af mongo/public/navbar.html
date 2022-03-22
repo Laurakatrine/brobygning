@@ -5,13 +5,10 @@
     <title></title>
     <link rel="stylesheet" href="css/styles.css">
 
-    <style>
-
-    </style>
 </head>
 <script src="/javascripts/jquery.min.js"></script>
 <script src="/socket.io/socket.io.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
 <script>
     $(document).ready(function() {
         $(function() {
@@ -19,12 +16,6 @@
             $("#logud").click(() => {
                 localStorage.setItem("login", "false");
             });
-
-            if (localStorage.getItem("login") == "false") {
-                $('#navbar').hide();
-            } else {
-                $('#navbar').show();
-            }
 
         });
    
@@ -64,7 +55,7 @@
                     <li><a id="mødelev" href="mødelev.html">Mød en elev</a></li>
                     <li><a id="værktøj" href="videoer.html">Værktøj og materialer</a></li>
                     <li><a id="opgaven" href="opgaven.html">Opgaven</a></li>
-                    <li><a> <img id="logo"></a></li>
+                    <li><a href="startside.html"> <img id="logo"></a></li>
                     <!--<li><a> <img src="../Logo%20web.png" id="logo"></a></li>-->
                 </ul>
             </div>

@@ -5,8 +5,19 @@
     <title></title>
     <link rel="stylesheet" href="css/styles.css">
     <style>
-
-
+        #popup {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            background: #fff;
+            width: 500px;
+            height: 500px;
+            margin-left: -250px;
+            /*Half the value of width to center div*/
+            margin-top: -250px;
+            /*Half the value of height to center div*/
+            z-index: 200;
+        }
     </style>
 </head>
 <script src="/javascripts/jquery.min.js"></script>
@@ -16,115 +27,52 @@
     var password;
 
     $(document).ready(function() {
+        
+        $("#navbar").load("navbar.html");
+        $("#ekstraNav").load("navbarEkstra.html");
         $("footer").load("footer.html");
+
+        var logPress = 0;
 
         let socket = io.connect('/'); // default namespace for Socket.io
 
+
+        $('#popup').hide();
+        //$('#navbar').show();
 
 
         $(function() {
 
             if (localStorage.getItem("login") == "false") {
+                $('#ekstraNav').hide();
                 console.log("im not logged in");
-                $('#inputfield').hide();
-                $('#signoff').hide();
-                $('#indhold').hide();
             }
             if (localStorage.getItem("login") == "true") {
+                $('#loginBtn').hide();
                 console.log("im already logged in");
-                $('#loginForm').hide();
-                $('#inputfield').show();
-                $('#signoff').show();
-                $('#indhold').show();
             }
 
-            $("#navbar").load("navbar.html");
+            $('#loginBtn').click(() => {
+                if (logPress == 0) {
+                    $('#popup').show();
+                    logPress = 1;
+                } else {
+                    console.log("signing off");
+                    localStorage.setItem("login", "false");
+                    logPress = 0;
+                    $('#loginBtn').html('Log ind');
+                }
+            });
 
             $('#login').click(() => {
+
 
                 username = $('#username').val();
                 password = $('#pwd').val();
 
                 socket.emit('login', username, password);
+
             });
-
-            /*$('#send').click(() => {
-                console.log("clikked");
-                var data = $('#input').val();
-                console.log(data);
-                var fontdata = 'style="color:blue; font-family: verdana; font-size: 300%;" '
-
-                socket.emit('indlæg', data, fontdata);
-                console.log(username);
-
-                socket.emit('indlæg', data, username);
-
-                console.log("send message to server");
-                $('#input').val('');
-
-                $('#input').text("");
-
-            });*/
-
-            $('#signoff').click(() => {
-                console.log("signing off");
-                localStorage.setItem("login", "false");
-                $('#inputfield').hide();
-                $('#signoff').hide();
-                $('#loginForm').show();
-                $('#indhold').hide();
-            });
-
-            /*$("#tjekliste").click(() => {
-                $("#indhold").load("tjekliste.html");
-            });
-            
-            $("#homepage").click(() => {
-                $("#indhold").load("index.html");
-            });
-            
-             /*$('#filsub').click(() => {
-                console.log("clikked");
-                
-                var fil = $('#myFile').val();
-                console.log(fil);
-                
-                socket.emit('file', fil);
-       
-
-                console.log("send message to server");
-             
-            });
-
-
-
-            /*socket.on("saved", (data) => {
-                console.log("saved " + data);
-                $('#indhold').text("");
-                var dataObj = JSON.parse(data);*/
-
-            /* $("#hjem").click(() => {
-                 $("#indhold").load("nyside.html");
-             });
-                 /*for (i = 0; i < dataObj.length; i++) {
-                     //$('#indhold').append(dataObj[i].indlæg + "<br />");
-                // $('#indhold').append('<p style="color:red; font-family: verdana; font-size: 300%;" >' + dataObj[i].indlæg + '</p> </br>');
-                 $('#indhold').append('<p ' + dataObj[i].fontstil +  '>' + dataObj[i].indlæg + '</p> </br>');
-                     
-                     $('#indhold').append(dataObj[i].indlæg + " & " + dataObj[i].brugernavn + "<br />");*/
-
-            /* $("#seindlæg").click(() => {
-                 $("#indhold").load("seindlæg.html");
-             });
-
-             $("#opret").click(() => {
-                 $("#indhold").load("opret.html");
-             });
-
-                     //console.log(dataObj[i].brugernavn);
-
-                 }*/
-
 
             socket.on("logging_in", (data) => {
                 //console.log("logging in " + data);
@@ -136,24 +84,16 @@
                 var registreretBrgn2 = dataObj[1].brugernavn;
                 var registreretPswd2 = dataObj[1].password;
 
-                //console.log("Registreret 1: " + registreretBrgn + " & " + registreretPswd);
-                //console.log("Registreret 2: " + registreretBrgn2 + " & " + registreretPswd2);
-
                 username = $('#username').val();
                 password = $('#pwd').val();
 
-                //console.log("Skrevet: " + username + " & " + password);
-
                 if (((username == registreretBrgn) && (password == registreretPswd)) || ((username == registreretBrgn2) && (password == registreretPswd2))) {
                     console.log("Correct login");
-                    $('#inputfield').show();
-                    $('#loginForm').hide();
-                    $('#signoff').show();
-                    $('#indhold').show();
                     localStorage.setItem("login", "true");
-                    localStorage.setItem("gruppenavn", username)
-                    console.log(localStorage.getItem("login"));
-                    $('#navbar').show();
+                    localStorage.setItem("gruppenavn", username);
+                    $('#popup').hide();
+                    $('#ekstraNav').show();
+                    $('#loginBtn').html('Log ud');
                 } else {
                     console.log("WRONG")
                 }
@@ -164,111 +104,50 @@
 
         });
     });
-
-    /*$('#send').click(() => {
-                console.log("clikked");
-                var data = $('#input').val();
-                console.log(data);
-                console.log(username);
-
-                socket.emit('indlæg', data, username);
-
-                console.log("send message to server");
-                $('#input').val('');
-
-                $('#input').text("");
-
-            });
-
-            socket.on("saved", (data) => {
-                console.log("saved " + data);
-                $('#indhold').text("");
-                var dataObj = JSON.parse(data);
-
-
-                for (i = 0; i < dataObj.length; i++) {
-                    $('#indhold').append(dataObj[i].indlæg + " & " + dataObj[i].brugernavn + "<br />");
-
-
-                    //console.log(dataObj[i].brugernavn);
-                }
-
-            });*/
-
 </script>
 
 <body>
     <div id="navbar">
-
     </div>
-    <div id="loginForm">
-        <form>
+    <div id="ekstraNav">
+    </div>
+    
+    <div id="popup">
+        <div class="popupcontent">
+            <h1>Some Popup Content</h1>
+            <form>
 
-            <label for="username">Username:</label><br>
-            <input type="text" id="username" name="username"><br>
-            <label for="pwd">Password:</label><br>
-            <input type="password" id="pwd" name="pwd">
+                <label for="username">Username:</label><br>
+                <input type="text" id="username" name="username"><br>
+                <label for="pwd">Password:</label><br>
+                <input type="password" id="pwd" name="pwd">
 
-            <input id="login" type="button" value="Submit">
+                <input id="login" type="button" value="Submit">
 
-        </form>
+            </form>
+        </div>
     </div>
     <div>
 
     </div>
-    <!--<div id="inputfield">
-        <form>
+
+    <div>
+        <p align="right"><button type="button" id="loginBtn">Log ind</button> </p>
+        <h2 id="notesbog">Notesbog</h2>
 
 
 
-            <textarea id="input" name="message" rows="20" cols="50">
-
-
-</textarea>
-            <input id="send" type="button" value="Submit">
-
-        </form>
-        <form>
-
-<<<<<<< HEAD
-        <input type="file" id="myFile" name="filename">
-        <input type="submit" id="filsub">
-    </form>
-    
-=======
-            <input type="file" id="myFile" name="filename">
-            <input type="submit">
-<<<<<<< Updated upstream
-        </form>
->>>>>>> aa59b1aadc9064beaa4f87d823818f1d6b533950
-=======
-        </form> -->
-
-<div>
-    <p align="right"><button type="button" id="login">Log ind</button> </p>
-   <h2 id="notesbog">Notesbog</h2>
-    
-   
-    
     </div>
 
     <div>
-        
-        
-       <p> Notesbogens formål
-Log ind for at bruge
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pellentesque elit arcu, sed fermentum orci tincidunt nec. In porttitor sodales tempor. 
-Aenean elementum nibh magna, quis eleifend nisi mattis in. Phasellus tristique dictum odio ac gravida. Nullam gravida consectetur ante, nec laoreet felis congue in. 
-Phasellus erat sapien, congue et sodales ac, lobortis vitae sem. In vitae finibus ante. Phasellus ultrices lectus consectetur libero maximus vestibulum. 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pellentesque elit arcu, sed fermentum orci tincidunt nec. In porttitor sodales tempor. 
-Aenean elementum nibh magna, quis eleifend nisi mattis in. Phasellus tristique dictum odio ac gravida. Nullam gravida consectetur ante, nec laoreet felis congue in. 
-Phasellus erat sapien, congue et sodale.
-           
-           
+
+        <p> Notesbogens formål Log ind for at bruge Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pellentesque elit arcu, sed fermentum orci tincidunt nec. In porttitor sodales tempor. Aenean elementum nibh magna, quis eleifend nisi mattis in. Phasellus tristique dictum odio ac gravida. Nullam gravida consectetur ante, nec laoreet felis congue in. Phasellus erat sapien, congue et sodales ac, lobortis vitae sem. In vitae finibus ante. Phasellus ultrices lectus consectetur libero maximus vestibulum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pellentesque elit arcu, sed fermentum orci tincidunt nec. In porttitor sodales tempor. Aenean elementum nibh magna, quis eleifend nisi mattis in. Phasellus tristique dictum odio ac gravida. Nullam gravida consectetur ante, nec laoreet felis congue in. Phasellus erat sapien, congue et sodale.
+
+
         </p>
 
-       <!-- <input type="button" id="signoff" value="Sign off">-->
+        <!-- <input type="button" id="signoff" value="Sign off">-->
     </div>
 
 

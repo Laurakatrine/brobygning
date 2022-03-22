@@ -68,6 +68,7 @@ h4 {
     font-family: 'Svendborg Erhvervsskole';
     font-weight: 400;
     font-size: 60%;
+    display: inline;
 }
 
 #tlf {
@@ -98,8 +99,8 @@ h4 {
     font-family: 'Svendborg Erhvervsskole';
     font-weight: 500;
     font-size: 100%;
-    display: inline;
 }
+
 
 #logo {
     width: 40%;
@@ -116,6 +117,13 @@ h4 {
     float: right;
     position: relative;
     padding: 2%3%2%2%;
+}
+
+#seindlæg, #opretindlæg, #tjekliste, #logud {
+    display: inline-flex;
+    float: right;
+    position: relative;
+    padding: 0%3%0%2%;
 }
 
 #SESG {

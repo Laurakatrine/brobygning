@@ -9,6 +9,7 @@
 <script>
     $(document).ready(function() {
 
+        $("#ekstraNav").load("navbarEkstra.html");
         let socket = io.connect('/');
         var labelText;
 
@@ -138,6 +139,9 @@
 <body>
     <div id="navbar">
 
+    </div>
+    
+    <div id="ekstraNav">
     </div>
     <p>
         <div id=indhold>
