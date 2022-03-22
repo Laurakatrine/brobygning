@@ -181,6 +181,10 @@ th td
     background-color: darkslategray;
 }
 
+#footerImg {
+    padding-left: 6%;
+}
+
 .footerBtm2 {
     display: flex;
 }

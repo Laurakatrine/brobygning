@@ -16,6 +16,7 @@
     var password;
 
     $(document).ready(function() {
+        $("footer").load("footer.html");
 
         let socket = io.connect('/'); // default namespace for Socket.io
 
@@ -262,5 +263,6 @@
 
 
 </body>
+<footer></footer>
 
 </html>

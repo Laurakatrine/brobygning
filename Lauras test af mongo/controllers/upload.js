@@ -31,7 +31,7 @@ const uploadFiles = async (req, res) => {
 }
 
 const getHome = (req, res) => {
-    return res.sendFile(path.join(`${__dirname}/../public/index.html`));
+    return res.sendFile(path.join(`${__dirname}/../public/startside.html`));
 };
 
 const videoer = (req, res) => {

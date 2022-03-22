@@ -14,7 +14,7 @@ initRoutes(app);
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', (req, res) => {
-    res.sendFile('index.html');
+    res.sendFile('startside.html');
 });
 
 var saveddata;

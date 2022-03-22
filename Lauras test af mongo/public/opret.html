@@ -15,6 +15,7 @@
 <script>
     $(document).ready(function() {
 
+        $("footer").load("footer.html");
         let socket = io.connect('/'); // default namespace for Socket.io
         //var username = localStorage.getItem("brugernavn");
 
@@ -135,5 +136,6 @@
 
 
 </body>
+    <footer></footer>
 
 </html>
