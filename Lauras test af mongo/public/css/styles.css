@@ -33,10 +33,6 @@
     src: url("Museo/MuseoSans_900.otf") format("opentype");
 }
 
-hr {
-    border: 1px;
-}
-
 p {
     font-family: 'Svendborg Erhvervsskole';
     font-weight: 100;
@@ -122,7 +118,6 @@ h3 {
     padding: 1%1%1%1%;
 }
 
-<<<<<<< Updated upstream
 #beskrivelse {
     margin-left: 0%;
     padding-left: 3%;
@@ -140,12 +135,17 @@ h3 {
     border-bottom: 1px solid grey;
 }
 
-#videoplayer
+table 
 {
-    padding-top: 2%;
-    column-count: 3;
+    width: 100%;
     text-align: center;
-    margin: inherit;
+    
+
+}
+
+th td 
+{
+    padding: 0%10%0%10%;
 }
 
 
