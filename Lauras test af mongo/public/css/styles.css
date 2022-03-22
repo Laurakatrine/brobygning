@@ -160,7 +160,29 @@ table
 
 th td 
 {
-    padding: 0%10%0%10%;
+   
+}
+
+
+    
+#elevtext 
+{
+    text-align: left; 
+    width: 80%
+    
+}
+#QRkode
+{
+ position: relative;
+    right: 0%;
+    text-align: center;
+ 
+    
+}
+
+#elev 
+{
+    display: inline-flex;
 }
 
 

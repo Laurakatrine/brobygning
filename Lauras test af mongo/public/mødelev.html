@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<script src="/javascripts/jquery.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    $(document).ready(function() {
+        $(function() {
+            $("#navbar").load("navbar.html");
+
+            if (localStorage.getItem("login") == "false") {
+                console.log("im not logged in");
+
+                $('#indhold').hide();
+            }
+            if (localStorage.getItem("login") == "true") {
+                console.log("im already logged in");
+                $('#indhold').show();
+            }
+
+
+        });
+
+        $('#QR').attr("src", "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPoAAAD6CAMAAAC/MqoPAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAGUExURQAAAP///6XZn90AAAIQSURBVHja7dpbdsMwCAVAe/+b7gbUFASqWzz6TPxgyA+Hm+t+7bnuq+MsH734dvFZ5SGlktHR0dHR0dFH0jfmoXRdhfrvYLPCJaOjo6Ojo6OjT6X31BAE50k9HUdHR0dHR0dHRw/eG4T07DvR0dHR0dHR0dGP7QebQ2Z0dHR0dHR0dPRjIXO6RZVB9m/l6+jo6Ojo6OjoD9Arp9CO7qE1XDI6Ojo6Ojo6+gj6Q6d3Bt6qAB0dHR0dHR19Ar1laG2599wOdPkOdHR0dHR0dPRZ9O7pMVhDNz0cS6Ojo6Ojo6OjT6V/vrsSN6cf/Pm6fIvW+To6Ojo6Ojo6+v+lR+e+9LdBSeW1+YkbHR0dHR0dHX0avZD2nmtR4YR/BXR0dHR0dPRJ9PxSq3mHV5jXond8k7Sio6Ojo6Ojo8+kN02K+yu0/Ky8kdKio6Ojo6Ojo7+J3hN5Bq/rWUvGQ2Z0dHR0dHR09KH07lD4oZB53QV0dHR0dHR09FH0ntOyoKwMqOEdKDo6Ojo6Ojr6CPrvTo/ZTWVlL/pDyejo6Ojo6Ojos+iVobVpttxOpYuDLDo6Ojo6Ojr6KHplaO2ZMo/l2Ojo6Ojo6Ojo6C3MQj7d00l0dHR0dHR0dPR9ZmXx2PSfRXR0dHR0dHT0qfRKApzfHqYhlVego6Ojo6Ojo4+ldye7hfrPtQMdHR0dHR0dfRr9tecLcbBzvM0GsVUAAAAASUVORK5CYII=");
+
+    });
+
+</script>
+
+<body>
+    <div id="navbar">
+
+    </div>
+
+    <div id="spacer">
+        <div>
+            <h2>Mød en elev</h2>
+        </div>
+        <div id=elev>
+            <p id=elevtext>
+
+                Find information om uddannelserne, kontakt studievejleder
+                'Er det noget for mig?'-siden, link til den
+
+                Opbygningen af uddannelserne
+                Uddannelsesmiljøet
+
+
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pellentesque elit arcu, sed fermentum orci tincidunt nec.
+                In porttitor sodales tempor. Aenean elementum nibh magna, quis eleifend nisi mattis in. Phasellus tristique dictum odio
+                ac gravida. Nullam gravida consectetur ante, nec laoreet felis congue in. Phasellus erat sapien, congue et sodales ac,
+                lobortis vitae sem. In vitae finibus ante. Phasellus ultrices lectus consectetur libero maximus vestibulum.
+
+
+            </p>
+
+            <div id=QRkode>
+                <a><img id="QR"></a>
+                <p>Har du spørgsmål til en elev? </p>
+                <p>Besøg vores VR univers. </p>
+            </div>
+
+        </div>
+
+        <hr>
+
+
+
+
+
+        <table id="videoplayer">
+            <tr>
+                <th>
+                    <h2>video 1</h2>
+                </th>
+                <th>
+                    <h2>video 2</h2>
+                </th>
+                <th>
+                    <h2>video 3</h2>
+                </th>
+
+
+            </tr>
+            <tr>
+                <td> <iframe width="420" height="315" src="https://www.youtube.com/embed/XW0ZISZXyx4"> </iframe></td>
+                <td> <iframe width="420" height="315" src="https://www.youtube.com/embed/XW0ZISZXyx4"> </iframe></td>
+                <td> <iframe width="420" height="315" src="https://www.youtube.com/embed/XW0ZISZXyx4"> </iframe></td>
+
+
+            </tr>
+
+            <tr>
+                <td>
+                    <p> Vil du læse mere om uddannelsen og dine muligheder?
+                        <a href="">Klik her</a>
+                    </p>
+                </td>
+                <td>
+                    <p> Vil du læse mere om uddannelsen og dine muligheder?
+                        <a href="">Klik her</a>
+                    </p>
+                </td>
+                <td>
+                    <p> Vil du læse mere om uddannelsen og dine muligheder? <a href="">Klik her</a> </p>
+                </td>
+
+
+            </tr>
+
+            <tr>
+                <th>
+                    <h2>video 1</h2>
+                </th>
+                <th>
+                    <h2>video 2</h2>
+                </th>
+                <th>
+                    <h2>video 3</h2>
+                </th>
+
+
+            </tr>
+            <tr>
+                <td> <iframe width="420" height="315" src=""> </iframe></td>
+                <td> <iframe width="420" height="315" src=""> </iframe></td>
+                <td> <iframe width="420" height="315" src=""> </iframe></td>
+
+
+            </tr>
+
+               <tr>
+                <td>
+                    <p> Vil du læse mere om uddannelsen og dine muligheder?
+                        <a href="">Klik her</a>
+                    </p>
+                </td>
+                <td>
+                    <p> Vil du læse mere om uddannelsen og dine muligheder?
+                        <a href="">Klik her</a>
+                    </p>
+                </td>
+                <td>
+                    <p> Vil du læse mere om uddannelsen og dine muligheder? <a href="">Klik her</a> </p>
+                </td>
+
+
+            </tr>
+
+        </table>
+
+
+
+
+
+    </div>
+
+
+
+
+</body>
+
+</html>
