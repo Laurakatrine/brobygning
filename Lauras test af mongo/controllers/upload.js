@@ -34,6 +34,10 @@ const getHome = (req, res) => {
     return res.sendFile(path.join(`${__dirname}/../public/index.html`));
 };
 
+const videoer = (req, res) => {
+    return res.sendFile(path.join(`${__dirname}/../public/videoer.html`));
+};
+
 const getListFilesChunks = async(req, res) => {
     try {
         await client.connect();
@@ -94,5 +98,6 @@ module.exports = {
     uploadFiles: uploadFiles,
     getHome: getHome,
     getListFilesChunks: getListFilesChunks,
-    getListFiles: getListFiles
+    getListFiles: getListFiles,
+    videoer: videoer,
 };

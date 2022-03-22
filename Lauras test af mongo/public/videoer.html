@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<script src="/javascripts/jquery.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    $(document).ready(function() {
+        $(function() {
+            $("#navbar").load("navbar.html");
+
+            if (localStorage.getItem("login") == "false") {
+                console.log("im not logged in");
+
+                $('#indhold').hide();
+            }
+            if (localStorage.getItem("login") == "true") {
+                console.log("im already logged in");
+                $('#indhold').show();
+            }
+
+
+        });
+    });
+</script>
+
+<body>
+    <div id="navbar">
+
+    </div>
+
+    <div id="spacer">
+        <div>
+            <h2>Videoer om materialer og værktøjer</h3>
+        </div>
+
+        <p>
+        <div>
+            <p>Krav til opgaven:</p>
+            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </li>
+
+            <li>Suspendisse ut tortor porttitor, iaculis libero sodales, sodales ligula.</li>
+            <li> Curabitur eget massa finibus, iaculis mi sed, lacinia justo.</li>
+            <li> In ac quam nec arcu varius hendrerit.</li>
+
+            <p>
+
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pellentesque elit arcu, sed fermentum orci tincidunt nec. In porttitor sodales tempor.
+                Aenean elementum nibh magna, quis eleifend nisi mattis in. Phasellus tristique dictum odio ac gravida. Nullam gravida consectetur ante, nec laoreet felis congue in.
+                Phasellus erat sapien, congue et sodales ac, lobortis vitae sem. In vitae finibus ante. Phasellus ultrices lectus consectetur libero maximus vestibulum.
+                <br>
+
+
+            </p>
+<hr>
+
+            <div id="videoplayer"> 
+                
+
+                <h2>video1</h2>
+
+                <iframe width="420" height="315" src="https://www.youtube.com/embed/Y6XJcqNaOnM"> </iframe>
+
+                <h2>video2</h2>
+
+                <iframe width="420" height="315" src="https://www.youtube.com/embed/Y6XJcqNaOnM"> </iframe>
+                <h2>video3</h2>
+
+                <iframe width="420" height="315" src="https://www.youtube.com/embed/Y6XJcqNaOnM">
+                </iframe>
+
+
+            </div>
+
+
+
+
+        </div>
+    </div>
+
+
+
+
+</body></html>

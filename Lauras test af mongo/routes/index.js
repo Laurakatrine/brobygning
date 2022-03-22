@@ -7,6 +7,7 @@ let routes = app => {
     router.get("/", uploadController.getHome);
     router.get("/chunks", uploadController.getListFilesChunks);
     router.get("/files", uploadController.getListFiles);
+    router.get("/videoer", uploadController.videoer);
     return app.use("/", router);
 };
 
