@@ -42,14 +42,24 @@ p {
     font-weight: 100;
 }
 
-h2 {
+h1 {
     font-family: 'Svendborg Erhvervsskole';
     font-weight: 900;
 }
 
-h3 {
+h2 {
     font-family: 'Svendborg Erhvervsskole';
     font-weight: 700;
+}
+
+h3 {
+    font-family: 'Svendborg Erhvervsskole';
+    font-weight: 500;
+}
+
+h4 {
+    font-family: 'Svendborg Erhvervsskole';
+    font-weight: 300;
 }
 
 .nav {
@@ -122,8 +132,7 @@ h3 {
     padding: 1%1%1%1%;
 }
 
-<<<<<<< Updated upstream
-#beskrivelse {
+<<<<<<< Updated upstream #beskrivelse {
     margin-left: 0%;
     padding-left: 3%;
     padding-right: 3%;
@@ -131,7 +140,7 @@ h3 {
 }
 
 #skema {
-        padding-left: 3%;
+    padding-left: 3%;
     padding-right: 3%;
     word-break: break-all;
 }
@@ -140,8 +149,7 @@ h3 {
     border-bottom: 1px solid grey;
 }
 
-#videoplayer
-{
+#videoplayer {
     padding-top: 2%;
     column-count: 3;
     text-align: center;
@@ -149,3 +157,30 @@ h3 {
 }
 
 
+/*FOOTER START*/
+
+#footerTop {
+    padding-left: 6%;
+    padding-right: 6%;
+}
+
+.footerTop {
+    display: flex;
+    background-color: lightgray;
+}
+
+.footerBtm {
+    padding-top: 2%;
+    background-color: darkslategray;
+}
+
+.footerBtm2 {
+    display: flex;
+}
+#footerBtm {
+    padding-left: 6%;
+    padding-right: 6%;
+}
+
+
+/*FOOTER SLUT*/
