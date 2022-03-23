@@ -22,6 +22,8 @@ var input;
 var img;
 
 
+
+
 //connect to the database
 client.connect(err => {
     if (err) console.log(err);
@@ -90,11 +92,22 @@ io.on('connection', function (socket) {
 
 
     //socket.on('indlæg', (data, fontdata) => {
-    socket.on('indlæg', (data, username) => {
+    socket.on('indlæg', (data, username, titel) => {
         input = data;
         //datastil = fontdata;
+        var dateObj = new Date();
+        var day = dateObj.getUTCDate();
+        var month = dateObj.toLocaleDateString('default', {
+            month: 'long'
+        });
+        var year = dateObj.getFullYear();
+        var hour = dateObj.getHours();
+        var minute = dateObj.getMinutes();
 
-        console.log("data" + data + "username: " + username);
+        var date = day + ". " + month + " " +year;
+        var time = hour +":"+minute;
+
+        console.log(date + ", " + time);
 
 
 
@@ -105,8 +118,11 @@ io.on('connection', function (socket) {
 
             collection2.insertOne({
                 indlæg: data,
+                titel: titel,
                 //fontstil: datastil
-                brugernavn: username
+                brugernavn: username,
+                dato: date,
+                tidspunkt: time
             })
         })
 

@@ -26,7 +26,6 @@
 
         socket.emit("readyLoad");
 
-        //
         console.log("button: " + buttonPressed);
         $.get('/chunks', function(data) {
             for (i = 0; i < data.length; i++) {
@@ -100,12 +99,15 @@
 
 
                 for (i = 0; i < dataObj.length; i++) {
+                    $('#content').append($(document.createElement('p')).prop({
+                        id: 'dato'+i
+                    }).html(dataObj[i].dato + ", " +dataObj[i].tidspunkt));
                     $('#content').append($(document.createElement('h3')).prop({
                         id: 'titel'+i
-                    }).html(dataObj[i].indlæg + Date()));
+                    }).html(dataObj[i].titel ));
                     $('#content').append($(document.createElement('p')).prop({
                         id: 'indhold'+i
-                    }).html(dataObj[i].brugernavn));
+                    }).html(dataObj[i].indlæg));
                     $('#content').append($(document.createElement('hr')));
                 }
 
@@ -139,10 +141,12 @@
 
     </div>
     <div id="content">
+        <div>
+            <p id="dato"></p>
+        </div>
     <div>
         <h3 id=titel></h3>
     </div>
-    
     <div>
         <p id="indhold"></p>
     </div>
