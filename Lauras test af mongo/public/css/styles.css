@@ -106,7 +106,6 @@ h4 {
     font-size: 100%;
 }
 
-
 #logo {
     width: 40%;
     height: 40%;
@@ -124,7 +123,10 @@ h4 {
     padding: 2%3%2%2%;
 }
 
-#seindlæg, #opretindlæg, #tjekliste, #logud {
+#seindlæg,
+#opretindlæg,
+#tjekliste,
+#logud {
     display: inline-flex;
     float: right;
     position: relative;
@@ -163,50 +165,34 @@ h4 {
     column-count: 3;
 }
 
-table 
-{
+table {
     width: 100%;
     text-align: center;
-    
-
 }
 
-th td 
-{
-   
-}
+th td {}
 
-
-    
-#elevtext 
-{
-    text-align: left; 
+#elevtext {
+    text-align: left;
     width: 80%
-    
 }
-#QRkode
-{
- position: relative;
+
+#QRkode {
+    position: relative;
     right: 0%;
     text-align: center;
- 
-    
 }
 
-#elev 
-{
+#elev {
     display: inline-flex;
 }
 
-#notesbog
-{
+#notesbog {
     align-content: left;
-   
 }
 
-
 #login {
-    background-color: white; 
+    background-color: white;
     border: none;
     color: #455b6e;
     padding: 15px 32px;
@@ -215,22 +201,22 @@ th td
     display: inline;
     font-size: 16px;
     transition-duration: 0.4s;
-    
 }
 
 #login:hover {
-  background-color: #455b6e; 
-  color: white;
+    background-color: #455b6e;
+    color: white;
 }
 
-
-#input{
-     resize: none;
+#input {
+    resize: none;
 }
+
+/*TJEKLISTE START*/
 
 #moreChecks {
     margin-top: 3%;
-background-color: white;
+    background-color: white;
     border-radius: 50%;
     height: 50px;
     width: 50px;
@@ -240,9 +226,22 @@ background-color: white;
 }
 
 #moreChecks:hover {
-        background-color: #455b6e;
+    background-color: #455b6e;
     color: white;
 }
+
+/*TJEKLISTE SLUT*/
+
+/*SE INDLÆG START*/
+
+#fotos img {
+    width: 50%;
+    height: 50%;
+    display: grid;
+    padding: 0.2%0.2%0.2%0.2%;
+}
+
+/*SE INDLÆG SLUT*/
 
 /*FOOTER START*/
 
@@ -254,35 +253,22 @@ background-color: white;
 .footerTop {
     display: flex;
     background-color: #d9dee2;
-    color:#455b6e;
+    color: #455b6e;
 }
-#overlay 
-{
-   
-    background-color:rgba(51, 51, 51, 0.5);
+
+#overlay {
+    background-color: rgba(51, 51, 51, 0.5);
     padding-top: 2%;
-    
-
-
 }
 
 .footerBtm {
-    background-color:#3f5c6f;
+    background-color: #3f5c6f;
     background-repeat: no-repeat;
-    background-image:url(https://sesg.dk/wp-content/uploads/2021/10/Gitter.svg);
-   background-size: 200% 200%;
-
-    background-position:50% 0%;
-    background-attachment:scroll;
-
-
-   
-   
-    
+    background-image: url(https://sesg.dk/wp-content/uploads/2021/10/Gitter.svg);
+    background-size: 200% 200%;
+    background-position: 50% 0%;
+    background-attachment: scroll;
 }
-
-
-
 
 #footerImg {
     padding-left: 6%;
@@ -292,18 +278,15 @@ background-color: white;
 .footerBtm2 {
     display: flex;
 }
+
 #footerBtm {
     padding-left: 6%;
     padding-right: 6%;
-    
 }
 
-#footerBtm h4
-{
+#footerBtm h4 {
     color: white;
 }
-
-
 
 
 /*FOOTER SLUT*/

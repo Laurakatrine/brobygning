@@ -32,15 +32,11 @@
             for (i = 0; i < data.length; i++) {
                 chunks.push(data[i]);
             }
-            console.log(chunks);
         }).done(function() {
             $.get('/files', function(data) {
                 for (i = 0; i < data.length; i++) {
                     files.push(data[i]);
                 }
-                console.log(files);
-                console.log("Her: " + files[0].id + files[0].type);
-                console.log("længde" + chunks.length);
 
 
 
@@ -59,7 +55,6 @@
 
                                 lastChunckName = chunks[i].files_id;
                                 fotoArray[chunks[i].nr] = chunks[i].data;
-                                console.log("nyt billede" + chunks[i].files_id);
                             }
 
                         }
@@ -79,13 +74,6 @@
 
 
                         $('#foto' + (j)).attr("src", "data:image/" + files[j].type + ";base64," + fotoData);
-                        
-                        console.log(fotoData);
-
-
-
-
-
                     }
                 }
 
@@ -95,30 +83,29 @@
 
 
         $(function() {
-            console.log("new page");
-            
-
             if (localStorage.getItem("login") == "false") {
                 console.log("im not logged in");
 
-                $('#indhold').hide();
+                //$('#indhold').hide();
             }
             if (localStorage.getItem("login") == "true") {
                 console.log("im already logged in");
-                $('#indhold').show();
+                //$('#indhold').show();
             }
 
             socket.on("saved", (data) => {
                 console.log("saved " + data);
-                $('#indhold').text("");
+                $('#titel').text("");
                 var dataObj = JSON.parse(data);
 
 
                 for (i = 0; i < dataObj.length; i++) {
-                    $('#indhold').append(dataObj[i].indlæg + " & " + dataObj[i].brugernavn + "<br />");
-
-
-                    //console.log(dataObj[i].brugernavn);
+                    $('#content').append($(document.createElement('h3')).prop({
+                        id: 'titel'+i
+                    }).html(dataObj[i].indlæg));
+                    $('#content').append($(document.createElement('p')).prop({
+                        id: 'indhold'+i
+                    }).html(dataObj[i].brugernavn));
                 }
 
             });
@@ -146,14 +133,16 @@
 
 
     </div>
-    <p>
-    <div id=indhold>
-        <p>Det her er index siden!</p>
-
+    <div id="content">
+    <div>
+        <h3 id=titel></h3>
+    </div>
+    
+    <div>
+        <p id="indhold"></p>
     </div>
 
-
-    </p>
+</div>
 
 
 
