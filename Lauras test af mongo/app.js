@@ -97,11 +97,17 @@ io.on('connection', function (socket) {
         //datastil = fontdata;
         var dateObj = new Date();
         var day = dateObj.getUTCDate();
-        var month = dateObj.getUTCMonth() + 1;
-        
-        var date = day + " / "+ month;
+        var month = dateObj.toLocaleDateString('default', {
+            month: 'long'
+        });
+        var year = dateObj.getFullYear();
+        var hour = dateObj.getHours();
+        var minute = dateObj.getMinutes();
 
-        console.log("data" + data + "username: " + username);
+        var date = day + ". " + month + " " +year;
+        var time = hour +":"+minute;
+
+        console.log(date + ", " + time);
 
 
 
@@ -115,7 +121,8 @@ io.on('connection', function (socket) {
                 titel: titel,
                 //fontstil: datastil
                 brugernavn: username,
-                dato: date
+                dato: date,
+                tidspunkt: time
             })
         })
 
