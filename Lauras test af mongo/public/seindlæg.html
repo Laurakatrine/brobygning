@@ -102,10 +102,10 @@
                 for (i = 0; i < dataObj.length; i++) {
                     $('#content').append($(document.createElement('h3')).prop({
                         id: 'titel'+i
-                    }).html(dataObj[i].indlæg + Date()));
+                    }).html(dataObj[i].titel + dataObj[i].dato));
                     $('#content').append($(document.createElement('p')).prop({
                         id: 'indhold'+i
-                    }).html(dataObj[i].brugernavn));
+                    }).html(dataObj[i].indlæg));
                     $('#content').append($(document.createElement('hr')));
                 }
 

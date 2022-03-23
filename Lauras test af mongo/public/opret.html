@@ -7,8 +7,9 @@
         img {
             width: 50%;
             height: 50%;
-        }    
-        </style>
+        }
+
+    </style>
 </head>
 <script src="/javascripts/jquery.min.js"></script>
 <script src="/socket.io/socket.io.js"></script>
@@ -22,23 +23,23 @@
         //var username = localStorage.getItem("brugernavn");
 
         let imagesPreview = function(input, placeToInsertImagePreview) {
-                if (input.files) {
-                    let filesAmount = input.files.length;
-                    for (i = 0; i < filesAmount; i++) {
-                        let reader = new FileReader();
-                        reader.onload = function(event) {
-                            $($.parseHTML("<img>"))
-                                .attr("src", event.target.result)
-                                .appendTo(placeToInsertImagePreview);
-                        };
-                        reader.readAsDataURL(input.files[i]);
-                    }
+            if (input.files) {
+                let filesAmount = input.files.length;
+                for (i = 0; i < filesAmount; i++) {
+                    let reader = new FileReader();
+                    reader.onload = function(event) {
+                        $($.parseHTML("<img>"))
+                            .attr("src", event.target.result)
+                            .appendTo(placeToInsertImagePreview);
+                    };
+                    reader.readAsDataURL(input.files[i]);
                 }
-            };
-        
+            }
+        };
+
         $("#input-files").on("change", function() {
-                imagesPreview(this, "div.preview-images");
-            });
+            imagesPreview(this, "div.preview-images");
+        });
 
 
         $(function() {
@@ -61,16 +62,22 @@
                 console.log("clikked");
                 var username = localStorage.getItem("gruppenavn");
                 var data = $('#input').val();
+                var titel = $('#inputTitel').val();
                 console.log(data);
                 console.log(username);
 
-                socket.emit('indlæg', data, username);
+                if (titel.length == 0) {
+                    alert("Du skal give indholdet en titel");
+                } else {
+                    socket.emit('indlæg', data, username, titel);
+                    $('#input').val('');
+                    $('#inputTitel').val('');
 
-                console.log("send message to server");
-                $('#input').val('');
-
-                $('#input').text("");
-
+                    $('#input').text("");
+                    $('#inputTitel').text("");
+                    alert("Indlægget er lagt op!");
+                }
+                console.log(titel.length);
             });
 
             /*$('#filsub').click(() => {
@@ -91,36 +98,30 @@
 </script>
 
 <body>
- 
-    
+
+
     <div id="navbar">
 
     </div>
-    
+
     <div id="ekstraNav">
     </div>
-    
-        <h2>Opret indlæg</h2>
-    
+
+    <h2>Opret indlæg</h2>
+
     <div id="inputfield">
         <form>
-
-
-
-            <textarea id="input" placeholder="Skriv indlæg her" rows="30" cols="160">
-
-
-</textarea>
+            <textarea id="inputTitel" placeholder="Giv indlægget en titel" cols="160"></textarea>
+            <textarea id="input" placeholder="Skriv indlæg her" rows="30" cols="160"></textarea>
             <input id="send" type="button" value="opload">
-
         </form>
         <form action="/upload" method="POST" enctype=multipart/form-data>
 
             <div class="form-group">
-                        <input type="file" name="file" multiple id="input-files" class="form-control-file border" />
-                    </div>
+                <input type="file" name="file" multiple id="input-files" class="form-control-file border" />
+            </div>
             <button type="submit" class="btn btn-primary">Submit</button>
-            
+
             <!--<input type="file" id="myFile" name="filename">
             <input type="submit" id="filsub" value="Submit">-->
 
@@ -131,20 +132,20 @@
 
 
         <div>
-           
+
 
             <p></p>
 
 
         </div>
         <p>
-           
+
 
 
         </p>
 
 
 </body>
-    <footer></footer>
+<footer></footer>
 
 </html>
