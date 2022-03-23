@@ -155,6 +155,7 @@ io.on('connection', function (socket) {
         console.log(checked);
         console.log(id);
         console.log(label);
+        console.log('jeg har skabt en ny');
 
         const collectionGruppedata = client.db("brobygning").collection("gruppedata");
         collectionGruppedata.find({

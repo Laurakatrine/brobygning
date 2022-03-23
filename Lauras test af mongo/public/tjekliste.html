@@ -3,6 +3,7 @@
 
 <head>
     <title></title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <script src="/javascripts/jquery.min.js"></script>
 <script src="/socket.io/socket.io.js"></script>
@@ -10,13 +11,14 @@
     $(document).ready(function() {
 
         $("#ekstraNav").load("navbarEkstra.html");
+        $("#navbar").load("navbar.html");
+        $("footer").load("footer.html");
         let socket = io.connect('/');
         var labelText;
 
         $(function() {
 
-            $("#navbar").load("navbar.html");
-            $("footer").load("footer.html");
+
             var username = localStorage.getItem('gruppenavn');
             var nr;
 
@@ -31,8 +33,7 @@
                 nr = dataObj.length;
                 console.log(dataObj.length);
                 for (var i = 0; i <= dataObj.length; i++) {
-
-
+                    console.log(dataObj[i].id);
                     $('#checks').append(
                         $(document.createElement('input')).prop({
                             id: dataObj[i].id,
@@ -85,6 +86,7 @@
                         for: 'checkbox' + (nr + 1)
                     }).html(labelText)).append(document.createElement('br'));
                     nr = nr + 1;
+                    console.log('jeg har skabt en ny' + labelText);
                     socket.emit('checkbox', username, id, checked, labelText);
                 }
 
@@ -140,11 +142,14 @@
     <div id="navbar">
 
     </div>
-    
+
     <div id="ekstraNav">
     </div>
-    <p>
+    <h2>Tjeklisten</h2>
         <div id=indhold>
+            <p>Her kan du lave en tjekliste! Du kan tjekke de forskellige opgaver af, og på den måde holde styr på hvad du så skal til!</p>
+            <p>Find selv på flere opgaver, og lav på den måde en huskeliste.</p>
+            <hr>
             <div id="checks">
                 <input type="checkbox" id="checkbox1">
                 <label for="checkbox1">Første opgave</label><br>
@@ -153,17 +158,13 @@
                 <input type="checkbox" id="checkbox3">
                 <label for="checkbox3">Tredje opgave</label><br>
             </div>
-
-
-            <p>Det her er tjeklisten</p>
-            <input type="button" id="moreChecks" value="Tilføj">
+            <input type="button" id="moreChecks" value="+">
         </div>
 
 
-    </p>
 
-    <div>
 
+    <div id="spacer">
 
 
     </div>

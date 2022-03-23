@@ -33,6 +33,11 @@
     src: url("Museo/MuseoSans_900.otf") format("opentype");
 }
 
+label {
+    font-family: 'Svendborg Erhvervsskole';
+    font-weight: 300;
+}
+
 p {
     font-family: 'Svendborg Erhvervsskole';
     font-weight: 100;
@@ -211,11 +216,6 @@ th td
     font-size: 16px;
     transition-duration: 0.4s;
     
-    
-    
-    
-    
-    
 }
 
 #login:hover {
@@ -226,8 +226,22 @@ th td
 
 #input{
      resize: none;
-    
+}
 
+#moreChecks {
+    margin-top: 3%;
+background-color: white;
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    color: #455b6e;
+    transition-duration: 0.4s;
+}
+
+#moreChecks:hover {
+        background-color: #455b6e;
+    color: white;
 }
 
 /*FOOTER START*/
