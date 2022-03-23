@@ -15,7 +15,8 @@ const uploadFiles = async (req, res) => {
         if(req.files.length <= 0) {
             return res.status(400).send({message: 'You must select one file'});
         }
-        return res.status(200).send({message: 'Files have been uploaded'});
+        return res.sendFile(path.join(`${__dirname}/../public/opret.html`));
+        //return res.status(200).send({message: 'Files have been uploaded'});
     }
     catch(error) {
         console.log(error);
