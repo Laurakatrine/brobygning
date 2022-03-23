@@ -160,6 +160,7 @@ h4 {
     border-bottom: 1px solid grey;
 }
 
+/*MATERIALE VIDEOER START*/
 #videoplayer {
     padding-top: 2%;
     column-count: 3;
@@ -171,6 +172,10 @@ table {
 }
 
 th td {}
+
+/* MATERIALE VIDEOER SLUT*/
+
+/*ELEV VIDEOR START*/
 
 #elevtext {
     text-align: left;
@@ -186,16 +191,67 @@ th td {}
 #elev {
     display: inline-flex;
 }
+/*ELEV VIDEOER SLUT */
+
+/*NOTESBOG START*/
 
 #notesbog {
     align-content: left;
 }
 
+/*NOTESBOG SLUT*/
 
-
+/*OPRET START*/
 #input {
     resize: none;
 }
+
+#inputTitel{
+    resize:none; 
+}
+
+#send{
+    background-color: white;
+    border: none;
+    color: #455b6e;
+    padding: 15px 32px;
+    margin-left: 72%;
+    text-align: center;
+    text-decoration: none;
+    display: inline;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    
+}
+
+#send:hover {
+    background-color: #455b6e;
+    color: white;
+}
+
+
+.btn btn-primary{
+    background-color: white;
+    border: none;
+    color: #455b6e;
+    padding: 15px 32px;
+    margin-left: 72%;
+    text-align: center;
+    text-decoration: none;
+    display: inline;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    
+}
+
+.btn btn-primary:hover {
+    background-color: #455b6e;
+    color: white;
+}
+
+
+
+/*OPRET SLUT*/
 
 
 /*INDEX START*/

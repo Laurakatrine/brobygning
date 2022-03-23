@@ -99,15 +99,23 @@
     <div id="inputfield">
         <form>
             <textarea id="inputTitel" placeholder="Giv indlægget en titel" cols="160"></textarea>
+            <br>
+            <input id="send" type="button" value="Upload">
+            <br>
+            
             <textarea id="input" placeholder="Skriv indlæg her" rows="30" cols="160"></textarea>
-            <input id="send" type="button" value="opload">
+            
+       
+            
+          
+           
         </form>
         <form action="/upload" method="POST" enctype=multipart/form-data>
 
             <div class="form-group">
-                <input type="file" name="file" multiple id="input-files" class="form-control-file border" />
+                <input type="file" name="file" multiple id="input-files" class="form-control-file border"/>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">Upload billede</button>
 
             <!--<input type="file" id="myFile" name="filename">
             <input type="submit" id="filsub" value="Submit">-->
