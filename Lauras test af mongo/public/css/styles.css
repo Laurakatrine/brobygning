@@ -63,6 +63,11 @@ h4 {
     font-weight: 300;
 }
 
+li {
+    font-family: 'Svendborg Erhvervsskole';
+    font-weight: 100;
+}
+
 .nav {
     object-fit: contain;
 }
@@ -199,9 +204,12 @@ th td {}
     align-content: left;
 }
 
+<<<<<<< HEAD
 /*NOTESBOG SLUT*/
 
 /*OPRET START*/
+=======
+>>>>>>> e3f3b0cd05662bdf5ae1f0f852233a29465fae34
 #input {
     resize: none;
 }
@@ -255,72 +263,71 @@ th td {}
 
 
 /*INDEX START*/
- #popup {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            background: #fff;
-            width: 500px;
-            height: 500px;
-            margin-left: -250px;
-            /*Half the value of width to center div*/
-            margin-top: -250px;
-            /*Half the value of height to center div*/
-            z-index: 200;
-      border-style: solid;
+
+#popup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background: #fff;
+    width: 500px;
+    height: 500px;
+    margin-left: -250px;
+    /*Half the value of width to center div*/
+    margin-top: -250px;
+    /*Half the value of height to center div*/
+    z-index: 200;
+    border-style: solid;
     border-color: #455b6e;
     border-width: thin;
-        }
-.popupcontent{
+}
+
+.popupcontent {
     text-align: left;
     padding: 2%4%4%2%;
-   
-    
 }
 
-
-.popupcontent input[type=text], select {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
+.popupcontent input[type=text],
+select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
 }
-.popupcontent input[type=password], select {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
+
+.popupcontent input[type=password],
+select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
 }
 
 .popupcontent input[type=button] {
-  width: 100%;
-  background-color: #49839e;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+    width: 100%;
+    background-color: #49839e;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
 .popupcontent input[type=button]:hover {
-  background-color: #455b6e;
+    background-color: #455b6e;
 }
 
-.closepopup
-{
-   
+.closepopup {
     background-color: white;
     border: none;
     color: #455b6e;
-   padding: 2%2%2%2%
-    text-align: center;
+    padding: 2%2%2%2% text-align: center;
     text-decoration: none;
     display: inline;
     font-size: 40px;
@@ -332,17 +339,12 @@ th td {}
     color: white;
 }
 
-
-
-
-#logologin{
-     display: block;
-  margin-left: auto;
-  margin-right: auto;
- 
-    width:450px;
+#logologin {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 450px;
     padding: 2%2%2%2%;
-    
 }
 
 #loginBtn {
@@ -361,6 +363,7 @@ th td {}
     background-color: #455b6e;
     color: white;
 }
+
 
 /*INDEX SLUT*/
 
@@ -383,7 +386,9 @@ th td {}
     color: white;
 }
 
+
 /*TJEKLISTE SLUT*/
+
 
 /*SE INDLÆG START*/
 
@@ -394,7 +399,9 @@ th td {}
     padding: 0.2%0.2%0.2%0.2%;
 }
 
+
 /*SE INDLÆG SLUT*/
+
 
 /*FOOTER START*/
 
