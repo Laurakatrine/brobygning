@@ -102,10 +102,11 @@
                 for (i = 0; i < dataObj.length; i++) {
                     $('#content').append($(document.createElement('h3')).prop({
                         id: 'titel'+i
-                    }).html(dataObj[i].indlæg));
+                    }).html(dataObj[i].indlæg + Date()));
                     $('#content').append($(document.createElement('p')).prop({
                         id: 'indhold'+i
                     }).html(dataObj[i].brugernavn));
+                    $('#content').append($(document.createElement('hr')));
                 }
 
             });
@@ -123,10 +124,14 @@
     
     <div id="ekstraNav">
     </div>
+    
+    <div>
+    <h2>Se indlæg</h2>
+    <p>Her kan du se alle indlæg der er lagt op.</p>
+        <hr>
+    </div>
 
     <div>
-
-        <p>Her kan vi se indlæggene</p>
         <div id="fotos">
         </div>
         <img id="foto">
