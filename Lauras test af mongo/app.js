@@ -66,8 +66,7 @@ client.connect(err => {
 
 
 io.on('connection', function (socket) {
-
-
+    
     socket.on("readyLoad", function () {
         client.connect(err => {
             if (err) console.log(err);
@@ -238,6 +237,7 @@ io.on('connection', function (socket) {
             var foundData = docs;
 
             socket.emit('checkboxBack', JSON.stringify(foundData));
+            
 
         });
 

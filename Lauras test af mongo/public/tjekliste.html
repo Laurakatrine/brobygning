@@ -27,6 +27,7 @@
             
             //kan ikke lide dataObj[i]:id
             socket.on('checkboxBack', (data) => {
+                console.log("data received");
                 var dataObj = JSON.parse(data);
                 console.log(dataObj);
                 console.log(data);
@@ -34,7 +35,7 @@
 
                 nr = dataObj.length;
                 console.log(dataObj.length);
-                for (var i = 0; i <= dataObj.length; i++) {
+                for (var i = 0; i <= dataObj.length-1; i++) {
                     console.log("this is id: "+dataObj[i].id);
                     $('#checks').append(
                         $(document.createElement('input')).prop({
@@ -53,6 +54,8 @@
                     console.log(newData);
                     $(newData).prop('checked', true);
                 }
+                
+                console.log("data done");
 
             });
 
@@ -73,12 +76,13 @@
                 var id = 'checkbox' + (nr + 1);
                 var checked = false;
                 console.log("This is id: " + id);
-                labelText = prompt("Giv opgaven et navn", "");
+                labelText = $('#checkTitle').val();
+                //labelText = prompt("Giv opgaven et navn", "");
 
                 console.log(labelText.length);
                 if (labelText.length == 0) {
                     alert("Giv den et navn!");
-                    labelText = prompt("Giv opgaven et navn", "");
+                    //labelText = prompt("Giv opgaven et navn", "");
                 } else {
                     $('#checks').append(
                         $(document.createElement('input')).prop({
@@ -90,8 +94,10 @@
                     }).html(labelText)).append(document.createElement('br'));
                     nr = nr + 1;
                     console.log('jeg har skabt en ny' + labelText + "mit brugernavn er " + username);
+                    $('#checkTitle').val("");
                     
                     socket.emit('checkbox', username, id, checked, labelText);
+                    
                     //virker ikke 
                     
                 }
@@ -165,7 +171,11 @@
                 <input type="checkbox" id="checkbox3">
                 <label for="checkbox3">Tredje opgave</label><br>
             </div>
-            <input type="button" id="moreChecks" value="+">
+            <form>
+            <input type="text" placeholder="Navngiv din opgave her" id="checkTitle">
+                <input type="button" value="Tilføj" id="moreChecks">
+            </form>
+            <!--<input type="button" id="moreChecks" value="+">-->
         </div>
         </div>
 
