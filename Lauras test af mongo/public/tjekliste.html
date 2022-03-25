@@ -24,9 +24,11 @@
 
             socket.emit('checkboxCheck', username);
 
+            
+            //kan ikke lide dataObj[i]:id
             socket.on('checkboxBack', (data) => {
                 var dataObj = JSON.parse(data);
-
+                console.log(dataObj);
                 console.log(data);
                 $('#checks').empty();
 
@@ -67,6 +69,7 @@
 
 
             $('#moreChecks').click(() => {
+                console.log('cliked');
                 var id = 'checkbox' + (nr + 1);
                 var checked = false;
                 console.log("This is id: " + id);
@@ -86,8 +89,11 @@
                         for: 'checkbox' + (nr + 1)
                     }).html(labelText)).append(document.createElement('br'));
                     nr = nr + 1;
-                    console.log('jeg har skabt en ny' + labelText);
+                    console.log('jeg har skabt en ny' + labelText + "mit brugernavn er " + username);
+                    
                     socket.emit('checkbox', username, id, checked, labelText);
+                    //virker ikke 
+                    
                 }
 
 
@@ -148,8 +154,8 @@
     <div id="beskrivelse">
     <h2>Tjeklisten</h2>
         <div id=indhold>
-            <p>Her kan du lave en tjekliste! Du kan tjekke de forskellige opgaver af, og på den måde holde styr på hvad du så skal til!</p>
-            <p>Find selv på flere opgaver, og lav på den måde en huskeliste.</p>
+            <p>Her kan i lave en tjekliste over de ting i skal nå omhandlende jeres projekt. I kan tjekke de forskellige opgaver af, og på den måde holde styr på hvad i så skal til.</p>
+            <p>Find selv på flere opgaver, og tilføje den ved at tryk på +. Lav på den måde en plan for jeres projekt. Husk at tage hensyn til eventuelle tørretider.</p>
 
             <div id="checks">
                 <input type="checkbox" id="checkbox1">

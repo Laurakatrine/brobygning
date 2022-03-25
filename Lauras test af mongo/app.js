@@ -172,6 +172,8 @@ io.on('connection', function (socket) {
         console.log(id);
         console.log(label);
         console.log('jeg har skabt en ny');
+        
+        
 
         const collectionGruppedata = client.db("brobygning").collection("gruppedata");
         collectionGruppedata.find({
@@ -198,6 +200,8 @@ io.on('connection', function (socket) {
                 })
             }
         });
+        
+      
 
 
         /*collectionGruppedata.find({}).toArray((err, docs) => { //you can chosse filter inside the find
@@ -215,6 +219,10 @@ io.on('connection', function (socket) {
         });*/
 
     });
+    
+      socket.on('test', (data) => {
+            console.log('Er her');
+        });
 
     socket.on('checkboxCheck', (data) => {
         console.log(data);
