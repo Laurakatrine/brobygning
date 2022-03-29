@@ -80,11 +80,19 @@ let getListFiles = async (req, res) => {
         }
         let filesInfos = [];
         await cursorFiles.forEach((doc) => {
+            var navn = doc.filename.split("-");
+            var navngruppe = navn[1];
+            console.log(navngruppe);
+            
+            
+            if(navngruppe == "gruppe1")
+                {
             filesInfos.push({
                 name: doc.filename,
                 id: doc._id,
                 type: doc.contentType,
             })
+                }
         });
 
         return res.status(200).send(filesInfos);
