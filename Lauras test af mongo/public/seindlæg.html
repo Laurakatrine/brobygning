@@ -99,6 +99,8 @@
 
 
                 for (i = 0; i < dataObj.length; i++) {
+                    
+                    if(dataObj[i].brugernavn == localStorage.getItem("gruppenavn")){
                     $('#content').append($(document.createElement('p')).prop({
                         id: 'dato'+i
                     }).html(dataObj[i].dato + ", " +dataObj[i].tidspunkt));
@@ -110,6 +112,7 @@
                     }).html(dataObj[i].indlæg));
                     $('#content').append($(document.createElement('hr')));
                 }
+                    }
 
             });
 
