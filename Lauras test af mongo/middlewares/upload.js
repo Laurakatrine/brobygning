@@ -9,7 +9,7 @@ var storage = new GridFsStorage({
     const match = ["image/png", "image/jpeg"];
     if (match.indexOf(file.mimetype) === -1) {
 
-      const filename = `${Date.now()}-gruppe2-${file.originalname}`;
+      //const filename = `${Date.now()}-gruppe2-${file.originalname}`;
 
       const filename = `${Date.now()}-gruppe1-${file.originalname}`;
 
@@ -18,10 +18,9 @@ var storage = new GridFsStorage({
     return {
       bucketName: "photos",
 
-      filename: `${Date.now()}-gruppe2-${file.originalname}
+      //filename: `${Date.now()}-gruppe2-${file.originalname}
 
-      filename: `${Date.now()}-gruppe1-${file.originalname}
-
+      filename: `${Date.now()}-gruppe1-${file.originalname}`
     };
   }
 });
