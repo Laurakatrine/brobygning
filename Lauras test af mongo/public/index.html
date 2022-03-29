@@ -40,17 +40,14 @@
                 $('#notesbogLogind').hide();
                 console.log("im already logged in");
             }
+            
+            $('#highlightLogin').click(()=> {
+               $('#popup').show(); 
+            });
 
             $('#loginBtn').click(() => {
-                if (logPress == 0) {
                     $('#popup').show();
-                    logPress = 1;
-                } else {
-                    console.log("signing off");
-                    localStorage.setItem("login", "false");
-                    logPress = 0;
-                    $('#loginBtn').html('Log ind');
-                }
+                
             });
 
             $('#login').click(() => {
@@ -64,9 +61,7 @@
 
             });
             
-            $('#logud').click(()=> {
-               console.log('Jeg klikkede'); 
-            });
+            
             
             
         $(".closepopup").click(function() {
@@ -146,7 +141,7 @@
 
 
         <p> Notesbogen skal bruges til at dokumentere jeres arbejde. Det er her i skal skrive ned hvilket valg i tager omhandlende jeres projekt og hvorfor.<br> Det skal bruges til at fremlægge jeres projekt sidst på dag to. Husk derfor at skriv ned løbende, og overvej hvorfor i vælger et bestemt håndværk, materiale eller værktøj. <br>
-          <p id="notesbogLogind"> Log ind for at bruge</p>
+          <p id="notesbogLogind"> <span id="highlightLogin">Log ind </span>for at bruge</p>
             
      
 

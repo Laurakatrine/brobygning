@@ -363,6 +363,12 @@ select {
     color: white;
 }
 
+#highlightLogin {
+    color: mediumblue;
+    font-weight: 500;
+    cursor: pointer;
+}
+
 
 /*INDEX SLUT*/
 
