@@ -8,6 +8,13 @@
 
     <script>
     
+        $(document).ready(function(){
+        $("#logud").click(()=> {
+           localStorage.setItem("login", "false");
+            console.log("Jeg klikkedd");
+        });
+    });
+        
     </script>
 <body>
     
@@ -15,7 +22,7 @@
     <nav>
             <div>
                 <ul class="nav2">
-                    <li><a id="logud" href="index.html">Log ud</a></li>
+                    <li><a id="logud"  href="index.html">Log ud</a></li>
                     <li><a id="seindlæg" href="seindl%C3%A6g.html">Se indlæg</a></li>
                     <li><a id="opretindlæg" href="opret.html">Opret indlæg</a></li>
                     <li><a id="tjekliste" href="tjekliste.html">Tjekliste</a></li>

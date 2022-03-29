@@ -58,9 +58,14 @@
 
                 username = $('#username').val();
                 password = $('#pwd').val();
+                
 
                 socket.emit('login', username, password);
 
+            });
+            
+            $('#logud').click(()=> {
+               console.log('Jeg klikkede'); 
             });
             
             
