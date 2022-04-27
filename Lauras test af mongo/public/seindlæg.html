@@ -136,7 +136,7 @@
                         
                         id: 'titel'+i,
                         cols: "160",
-                        //readonly: true
+                        readonly: true
                         
                     }).html(dataObj[i].titel)); 
                        
@@ -205,21 +205,21 @@
             });
         
        
-        
+        // vi lader som om at knap send0 virker 
         $("#testbutton").on('click', function () {
              console.log("clikked");
-                var id = "625fbbaf2fac48344097eb2d"
+            var num = 0
                 var username = localStorage.getItem("gruppenavn");
-                var data = $('#input0').val();
-                var titel = $('#titel0').val();
+                var data = $('#input' + 0).val();
+                var titel = $('#titel' + 0).val();
                 console.log(data);
                 console.log(username);
 
                 if (titel.length == 0) {
                     alert("Du skal give indholdet en titel");
                 } else {
-                    socket.emit('edit', id, data, username, titel);
-                    console.log(id, data, username, titel);
+                    socket.emit('edit', data, username, titel);
+                    console.log(data, username, titel);
                     $('#input').val('');
                     $('#inputTitel').val('');
 
@@ -253,7 +253,7 @@
     <div>
     <h2>Se indlæg</h2>
    <!-- <p>Her kan du se alle indlæg der er lagt op.</p>-->
-        <p>Billeder er langsomme om at loade, vær tålmodig og de kommer :-) </p>
+        <p>Billeder er langsomme om at loade, vær tålmodig og de kommer :-). </p>
 
     </div>
 

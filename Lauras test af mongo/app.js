@@ -248,7 +248,7 @@ io.on('connection', function (socket) {
     });
 
 
-    socket.on('edit', (id, data, username, titel) => {
+    socket.on('edit', (data, username, titel) => {
         var dateObj = new Date();
         var day = dateObj.getUTCDate();
         var month = dateObj.toLocaleDateString('default', {
@@ -274,7 +274,8 @@ io.on('connection', function (socket) {
             
                 // create a filter for a data to update
                 const filter = {
-                    _id: id,
+                    titel: titel,
+                    brugernavn: username
                 };
                 // this option instructs the method to create a document if no documents match the filter
                 const options = {
@@ -284,9 +285,7 @@ io.on('connection', function (socket) {
                 const updateDoc = {
                     $set: {
                         indlæg: data,
-                        titel:titel,
-                        brugernavn: username,
-                        dato:data,
+                        dato: date,
                         tidspunkt: time
                     },
                 };
