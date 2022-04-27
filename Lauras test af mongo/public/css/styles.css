@@ -409,6 +409,30 @@ select {
     padding: 0.2%0.2%0.2%0.2%;
 }
 
+.contentform {
+    resize: none;
+}
+
+#testbutton{
+    background-color: #455b6e;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    margin-left: 72%;
+    text-align: center;
+    text-decoration: none;
+    display: inline;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    
+}
+
+#testbutton : hover {
+    background-color: white;
+    color: #455b6e;
+}
+
+
 
 /*SE INDLÆG SLUT*/
 

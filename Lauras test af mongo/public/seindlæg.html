@@ -133,6 +133,7 @@
                     $('#content').append($(document.createElement('textarea')).prop({
                         
                         id: 'titel'+i,
+                        class: 'contentform',
                         cols: "160",
                         readonly: true
                         
@@ -152,8 +153,10 @@
                     $('#content').append($(document.createElement('textarea')).prop({
                         
                         id: 'input'+i,
+                        class: 'contentform',
                         cols: "160",
                         rows: "30",
+                        
                         //readonly: true
                         
                     }).html(dataObj[i].indlæg));
