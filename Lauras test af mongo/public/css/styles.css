@@ -218,9 +218,9 @@ th td {}
 }
 
 #send{
-    background-color: white;
+    background-color: #455b6e;
     border: none;
-    color: #455b6e;
+    color: white;
     padding: 15px 32px;
     margin-left: 72%;
     text-align: center;
@@ -232,8 +232,8 @@ th td {}
 }
 
 #send:hover {
-    background-color: #455b6e;
-    color: white;
+    background-color: white;
+    color: #455b6e;
 }
 
 
