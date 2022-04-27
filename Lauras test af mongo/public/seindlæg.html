@@ -21,6 +21,7 @@
         var nr = 0;
         var lastChunckName;
         var fotoArray = [];
+        var numArray = []; 
         
         
  
@@ -105,6 +106,7 @@
                 for (i = 0; i < dataObj.length; i++) {
                     
                     if(dataObj[i].brugernavn == localStorage.getItem("gruppenavn")){
+                        numArray.push(i);
                     $('#content').append($(document.createElement('p')).prop({
                         id: 'dato'+i
                     }).html(dataObj[i].dato + ", " +dataObj[i].tidspunkt));
@@ -137,13 +139,13 @@
                     }).html(dataObj[i].titel)); 
                        
                         
-                        $('#content').append($(document.createElement('button')).prop({
+                   /*     $('#content').append($(document.createElement('button')).prop({
                         
                         id: 'send'+i,
                         type: "button"
                         
                     }).html("upload")); 
-                        
+                        */
                
                         
                         
@@ -170,23 +172,77 @@
                        
                 }
                     }
+                
+            
+          
 
-            });
-
-
+        
         });
         
-        
+       /* 
           
-         $('#button6').click(() => {
-             console.log("her");
-         });
+          console.log(numArray);
+              for(i=0; i<numArray.length; i++)
+            {
+                console.log(numArray[i]);
+                var num = numArray[i]
+                  $("#send" + num).on('click', function () {
+             console.log("clikked");
+          
+                var username = localStorage.getItem("gruppenavn");
+                var data = $('#input' + num).val();
+                var titel = $('#titel' + num).val();
+                console.log(data);
+                console.log(username);
 
+                if (titel.length == 0) {
+                    alert("Du skal give indholdet en titel");
+                } else {
+                    socket.emit('edit', data, username, titel);
+                    console.log(data, username, titel);
+                    $('#input').val('');
+                    $('#inputTitel').val('');
+
+                    $('#input').text("");
+                    $('#inputTitel').text("");
+                    alert("Indlægget er lagt op!");
+                }
+                console.log(titel.length);
+            
+            
+            
+            
+        });
+            }*/
+
+            });
      
        
-        // vi lader som om at knap send0 virker 
+        // vi lader som om at knap send0 virker
+        //lige nu ændre den tidspunktet på alle indlæg overvej om det skal ændres 
         $("#testbutton").on('click', function () {
              console.log("clikked");
+            
+            
+             for(i=0; i<numArray.length; i++)
+            {
+                var num = numArray[i]
+                var username = localStorage.getItem("gruppenavn");
+                var data = $('#input' + num).val();
+                var titel = $('#titel' + num).val();
+                console.log(data);
+                console.log(username);
+
+                    socket.emit('edit', data, username, titel);
+                    console.log(data, username, titel);
+                    
+                }
+                console.log(titel.length);
+            
+                            
+             alert("opdateret!");               
+            
+            /*
             var num = 0
                 var username = localStorage.getItem("gruppenavn");
                 var data = $('#input' + 0).val();
@@ -209,7 +265,7 @@
                 console.log(titel.length);
            
             
-            
+            */
             
         });
         
@@ -254,7 +310,7 @@
         <p id="indhold"></p>
     </div>
         
-        <button id="testbutton" type="button"> hej</button>
+        <button id="testbutton" type="button"> Opdater indlæg</button>
 
 </div>
         </div>
