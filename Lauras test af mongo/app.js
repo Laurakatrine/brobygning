@@ -165,11 +165,12 @@ io.on('connection', function (socket) {
 
     });
 
-    socket.on('checkbox', (data, id, checked, label) => {
+    socket.on('checkbox', (data, id, checked, label, day) => {
         console.log(data);
         console.log(checked);
         console.log(id);
         console.log(label);
+        console.log(day);
         console.log('jeg har skabt en ny');
 
 
@@ -177,7 +178,8 @@ io.on('connection', function (socket) {
         const collectionGruppedata = client.db("brobygning").collection("gruppedata");
         collectionGruppedata.find({
             gruppenavn: data,
-            id: id
+            id: id,
+            day: day
         }).count().then((n) => {
             console.log('There are ' + n + ' documents');
             if (n == 0) {
@@ -185,12 +187,14 @@ io.on('connection', function (socket) {
                     gruppenavn: data,
                     id: id,
                     checked: checked,
-                    label: label
+                    label: label,
+                    day: day
                 });
             } else {
                 collectionGruppedata.findOneAndUpdate({
                     gruppenavn: data,
-                    id: id
+                    id: id,
+                    day: day
                 }, {
                     $set: {
                         checked: checked,

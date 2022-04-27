@@ -93,10 +93,13 @@
                 var registreretBrgn7 = dataObj[8].brugernavn;
                 var registreretPswd7 = dataObj[8].password;
                 
+                var registreretBrgn8 = dataObj[0].brugernavn;
+                var registreretPswd8 = dataObj[0].password;
+                
                 username = $('#username').val();
                 password = $('#pwd').val();
 
-                if (((username == registreretBrgn) && (password == registreretPswd)) || ((username == registreretBrgn2) && (password == registreretPswd2)) || ((username == registreretBrgn3) && (password == registreretPswd3))|| ((username == registreretBrgn4) && (password == registreretPswd4))|| ((username == registreretBrgn5) && (password == registreretPswd5))|| ((username == registreretBrgn6) && (password == registreretPswd6))|| ((username == registreretBrgn7) && (password == registreretPswd7))) {
+                if (((username == registreretBrgn) && (password == registreretPswd)) || ((username == registreretBrgn2) && (password == registreretPswd2)) || ((username == registreretBrgn3) && (password == registreretPswd3))|| ((username == registreretBrgn4) && (password == registreretPswd4))|| ((username == registreretBrgn5) && (password == registreretPswd5))|| ((username == registreretBrgn6) && (password == registreretPswd6))|| ((username == registreretBrgn7) && (password == registreretPswd7))|| ((username == registreretBrgn8) && (password == registreretPswd8))) {
                     console.log("Correct login");
                     localStorage.setItem("login", "true");
                     localStorage.setItem("gruppenavn", username);
