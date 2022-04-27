@@ -11,7 +11,7 @@ var storage = new GridFsStorage({
 
       //const filename = `${Date.now()}-gruppe2-${file.originalname}`;
 
-      const filename = `${Date.now()}-gruppe1-${file.originalname}`;
+      const filename = `${Date.now()}_sesg-mkluge16-5_${file.originalname}`;
 
       return filename;
     }
@@ -20,7 +20,7 @@ var storage = new GridFsStorage({
 
       //filename: `${Date.now()}-gruppe2-${file.originalname}
 
-      filename: `${Date.now()}-gruppe1-${file.originalname}`
+      filename: `${Date.now()}_sesg-mkluge16-5_${file.originalname}`
     };
   }
 });
