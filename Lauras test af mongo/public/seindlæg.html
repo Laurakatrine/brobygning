@@ -24,11 +24,7 @@
         
         
  
-        
-         $('#button6').click(() => {
-             console.log("her");
-         });
-
+      
         
         let socket = io.connect('/'); // default namespace for Socket.io
 
@@ -181,29 +177,12 @@
         });
         
         
-        //mangler noget med at man kan se id'et af opslaget 
-        $('#send6').click(() => {
-                console.log("clikked");
-               /* var username = localStorage.getItem("gruppenavn");
-                var data = $('#input').val();
-                var titel = $('#inputTitel').val();
-                console.log(data);
-                console.log(username);
+          
+         $('#button6').click(() => {
+             console.log("her");
+         });
 
-                if (titel.length == 0) {
-                    alert("Du skal give indholdet en titel");
-                } else {
-                    socket.emit('edit', id, data, username, titel);
-                    $('#input').val('');
-                    $('#inputTitel').val('');
-
-                    $('#input').text("");
-                    $('#inputTitel').text("");
-                    alert("Indlægget er lagt op!");
-                }
-                console.log(titel.length);*/
-            });
-        
+     
        
         // vi lader som om at knap send0 virker 
         $("#testbutton").on('click', function () {
