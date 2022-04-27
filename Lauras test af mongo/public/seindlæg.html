@@ -21,7 +21,15 @@
         var nr = 0;
         var lastChunckName;
         var fotoArray = [];
+        
+        
+ 
+        
+         $('#button6').click(() => {
+             console.log("her");
+         });
 
+        
         let socket = io.connect('/'); // default namespace for Socket.io
 
         socket.emit("readyLoad");
@@ -104,13 +112,67 @@
                     $('#content').append($(document.createElement('p')).prop({
                         id: 'dato'+i
                     }).html(dataObj[i].dato + ", " +dataObj[i].tidspunkt));
+        /*                
+                        
                     $('#content').append($(document.createElement('h3')).prop({
                         id: 'titel'+i
                     }).html(dataObj[i].titel ));
+                        
+                        
+                        
                     $('#content').append($(document.createElement('p')).prop({
                         id: 'indhold'+i
                     }).html(dataObj[i].indlæg));
                     $('#content').append($(document.createElement('hr')));
+                        
+                   */ 
+                   
+                    $('#content').append($(document.createElement('form')).prop({
+                        id: 'form'+i
+                    }));    
+                    
+                        
+                    $('#content').append($(document.createElement('textarea')).prop({
+                        
+                        id: 'title'+i,
+                        cols: "160",
+                        //readonly: true
+                        
+                    }).html(dataObj[i].titel)); 
+                       
+                        
+                        $('#content').append($(document.createElement('button')).prop({
+                        
+                        id: 'send'+i,
+                        type: "button",
+                        value: "Uplaod"
+                        
+                    }).html("upload")); 
+                        
+               
+                        
+                        
+                    $('#content').append($(document.createElement('textarea')).prop({
+                        
+                        id: 'input'+i,
+                        cols: "160",
+                        rows: "30",
+                        //readonly: true
+                        
+                    }).html(dataObj[i].indlæg));
+                          
+                        
+                        
+                     /*   $('#content').append($(document.createElement('button')).prop({
+                        
+                        //form: "form" + i, 
+                        id: "button" + i, 
+                        type: "button"
+                    }).html("change"));*/
+                        
+                        
+                        
+                       
                 }
                     }
 
@@ -118,6 +180,40 @@
 
 
         });
+        
+        
+        //mangler noget med at man kan se id'et af opslaget 
+        $('#send6').click(() => {
+                console.log("clikked");
+               /* var username = localStorage.getItem("gruppenavn");
+                var data = $('#input').val();
+                var titel = $('#inputTitel').val();
+                console.log(data);
+                console.log(username);
+
+                if (titel.length == 0) {
+                    alert("Du skal give indholdet en titel");
+                } else {
+                    socket.emit('edit', id, data, username, titel);
+                    $('#input').val('');
+                    $('#inputTitel').val('');
+
+                    $('#input').text("");
+                    $('#inputTitel').text("");
+                    alert("Indlægget er lagt op!");
+                }
+                console.log(titel.length);*/
+            });
+        
+        $("#send6").on('click', function () {
+            
+            console.log('virk');
+        });
+
+    
+   
+    
+    
     });
 
 </script>

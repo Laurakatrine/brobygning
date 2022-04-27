@@ -66,7 +66,7 @@ client.connect(err => {
 
 
 io.on('connection', function (socket) {
-    
+
     socket.on("readyLoad", function () {
         client.connect(err => {
             if (err) console.log(err);
@@ -103,8 +103,8 @@ io.on('connection', function (socket) {
         var hour = dateObj.getHours();
         var minute = dateObj.getMinutes();
 
-        var date = day + ". " + month + " " +year;
-        var time = hour +":"+minute;
+        var date = day + ". " + month + " " + year;
+        var time = hour + ":" + minute;
 
         console.log(date + ", " + time);
 
@@ -172,8 +172,8 @@ io.on('connection', function (socket) {
         console.log(label);
         console.log(day);
         console.log('jeg har skabt en ny');
-        
-        
+
+
 
         const collectionGruppedata = client.db("brobygning").collection("gruppedata");
         collectionGruppedata.find({
@@ -203,8 +203,8 @@ io.on('connection', function (socket) {
                 })
             }
         });
-        
-      
+
+
 
 
         /*collectionGruppedata.find({}).toArray((err, docs) => { //you can chosse filter inside the find
@@ -222,10 +222,10 @@ io.on('connection', function (socket) {
         });*/
 
     });
-    
-      socket.on('test', (data) => {
-            console.log('Er her');
-        });
+
+    socket.on('test', (data) => {
+        console.log('Er her');
+    });
 
     socket.on('checkboxCheck', (data) => {
         console.log(data);
@@ -241,11 +241,49 @@ io.on('connection', function (socket) {
             var foundData = docs;
 
             socket.emit('checkboxBack', JSON.stringify(foundData));
-            
+
 
         });
 
     });
+
+
+    socket.on('edit', (id, data, username, title) => {
+        var dateObj = new Date();
+        var day = dateObj.getUTCDate();
+        var month = dateObj.toLocaleDateString('default', {
+            month: 'long'
+        });
+        var year = dateObj.getFullYear();
+        var hour = dateObj.getHours();
+        var minute = dateObj.getMinutes();
+
+        var date = day + ". " + month + " " + year;
+        var time = hour + ":" + minute;
+
+        console.log(date + ", " + time);
+
+        client.connect(err => {
+            if (err) console.log(err);
+
+
+
+            const collectionEdit = client.db("brobygning").collection("test");
+            collectionEdit.updateOne({
+                _id: id
+            }, {
+                $set: {
+                    indlæg: data,
+                    titel: titel,
+                    brugernavn: username,
+                    dato: data,
+                    tidspunkt: time
+                },
+
+            })
+
+        })
+    })
 
 
 });
