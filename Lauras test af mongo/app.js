@@ -244,7 +244,7 @@ io.on('connection', function (socket) {
     });
 
 
-    socket.on('edit', (id, data, username, title) => {
+    socket.on('edit', (id, data, username, titel) => {
         var dateObj = new Date();
         var day = dateObj.getUTCDate();
         var month = dateObj.toLocaleDateString('default', {
@@ -265,21 +265,41 @@ io.on('connection', function (socket) {
 
 
             const collectionEdit = client.db("brobygning").collection("test");
-            collectionEdit.updateOne({
-                _id: id
-            }, {
-                $set: {
-                    indlæg: data,
-                    titel: titel,
-                    brugernavn: username,
-                    dato: data,
-                    tidspunkt: time
-                },
+            
+            
+            
+                // create a filter for a data to update
+                const filter = {
+                    _id: id,
+                };
+                // this option instructs the method to create a document if no documents match the filter
+                const options = {
+                    upsert: true
+                };
+                // create a document that sets the plot of the movie
+                const updateDoc = {
+                    $set: {
+                        indlæg: data,
+                        titel:titel,
+                        brugernavn: username,
+                        dato:data,
+                        tidspunkt: time
+                    },
+                };
+
+
+                const result = collectionEdit.updateOne(filter, updateDoc, options);
+
+           
+            
+          
+
+            
 
             })
 
         })
-    })
+    
 
 
 });

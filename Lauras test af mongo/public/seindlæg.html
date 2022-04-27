@@ -134,7 +134,7 @@
                         
                     $('#content').append($(document.createElement('textarea')).prop({
                         
-                        id: 'title'+i,
+                        id: 'titel'+i,
                         cols: "160",
                         //readonly: true
                         
@@ -144,8 +144,7 @@
                         $('#content').append($(document.createElement('button')).prop({
                         
                         id: 'send'+i,
-                        type: "button",
-                        value: "Uplaod"
+                        type: "button"
                         
                     }).html("upload")); 
                         
@@ -205,11 +204,36 @@
                 console.log(titel.length);*/
             });
         
-        $("#send6").on('click', function () {
-            
-            console.log('virk');
-        });
+       
+        
+        $("#testbutton").on('click', function () {
+             console.log("clikked");
+                var id = "625fbbaf2fac48344097eb2d"
+                var username = localStorage.getItem("gruppenavn");
+                var data = $('#input0').val();
+                var titel = $('#titel0').val();
+                console.log(data);
+                console.log(username);
 
+                if (titel.length == 0) {
+                    alert("Du skal give indholdet en titel");
+                } else {
+                    socket.emit('edit', id, data, username, titel);
+                    console.log(id, data, username, titel);
+                    $('#input').val('');
+                    $('#inputTitel').val('');
+
+                    $('#input').text("");
+                    $('#inputTitel').text("");
+                    alert("Indlægget er lagt op!");
+                }
+                console.log(titel.length);
+           
+            
+            
+            
+        });
+        
     
    
     
@@ -250,6 +274,8 @@
     <div>
         <p id="indhold"></p>
     </div>
+        
+        <button id="testbutton" type="button"> hej</button>
 
 </div>
         </div>
