@@ -45,7 +45,9 @@
         $(function() {
             console.log("new page");
             $("#navbar").load("navbar.html");
-
+         
+            
+           
             if (localStorage.getItem("login") == "false") {
                 console.log("im not logged in");
                 $('#inputfield').hide();
@@ -55,8 +57,12 @@
                 console.log("im already logged in");
                 $('#inputfield').show();
                 $('#indhold').show();
+               
             }
 
+             alert("Husk at trykke upload");
+            
+            
 
             $('#send').click(() => {
                 console.log("clikked");
