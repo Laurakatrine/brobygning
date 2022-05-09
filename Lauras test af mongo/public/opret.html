@@ -101,6 +101,18 @@
     </div>
 
     <h2>Opret indlæg</h2>
+    
+    <form action="/upload" method="POST" enctype=multipart/form-data>
+
+            <div class="form-group">
+                <input type="file" name="file" multiple id="input-files" class="form-control-file border"/>
+            
+            <button type="submit" class="btn btn-primary">Upload billede</button>
+</div>
+            <!--<input type="file" id="myFile" name="filename">
+            <input type="submit" id="filsub" value="Submit">-->
+
+        </form>
 
     <div id="inputfield">
         <form>
@@ -109,24 +121,14 @@
             <input id="send" type="button" value="Upload">
             <br>
             
-            <textarea id="input" placeholder="Skriv indlæg her" rows="30" cols="160"></textarea>
+            <textarea id="input" placeholder="Skriv jeres indlæg her! &#10&#10Hvad har I lavet siden sidst? &#10Hvilke tanker har I gjort jer? &#10Har jeres plan ændret sig?&#10Hvad skal I nu?" rows="30" cols="160"></textarea>
             
        
             
           
            
         </form>
-        <form action="/upload" method="POST" enctype=multipart/form-data>
-
-            <div class="form-group">
-                <input type="file" name="file" multiple id="input-files" class="form-control-file border"/>
-            </div>
-            <button type="submit" class="btn btn-primary">Upload billede</button>
-
-            <!--<input type="file" id="myFile" name="filename">
-            <input type="submit" id="filsub" value="Submit">-->
-
-        </form>
+        
         <div class="preview-images">
         </div>
 
