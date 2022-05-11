@@ -265,13 +265,7 @@ io.on('connection', function (socket) {
 
         client.connect(err => {
             if (err) console.log(err);
-
-
-
             const collectionEdit = client.db("brobygning").collection("test");
-            
-            
-            
                 // create a filter for a data to update
                 const filter = {
                     titel: titel,

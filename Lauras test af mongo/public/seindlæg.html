@@ -42,28 +42,17 @@
                     files.push(data[i]);
                 }
 
-
-
                 for (j = 0; j < files.length; j++) {
-
                     for (i = 0; i < chunks.length; i++) {
-
-
                         if (chunks[i].files_id == files[j].id) {
-
-
                             if (lastChunckName == chunks[i].files_id) {
                                 fotoArray[chunks[i].nr] = chunks[i].data;
-
                             } else {
-
                                 lastChunckName = chunks[i].files_id;
                                 fotoArray[chunks[i].nr] = chunks[i].data;
                             }
 
                         }
-
-
 
                         $('#fotos').append($(document.createElement('img')).prop({
                             id: 'foto' + (j)
