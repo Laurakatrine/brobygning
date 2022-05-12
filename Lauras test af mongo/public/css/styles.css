@@ -375,7 +375,7 @@ select {
 
 /*TJEKLISTE START*/
 
-#moreChecks {
+#moreChecks, #moreChecks2 {
     margin-top: 1%;
     margin-left: 1%;
     background-color: white;
@@ -387,7 +387,7 @@ select {
     transition-duration: 0.4s;
 }
 
-#moreChecks:hover {
+#moreChecks:hover, #moreChecks2:hover {
     background-color: #455b6e;
     color: white;
 }
