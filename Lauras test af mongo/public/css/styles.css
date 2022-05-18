@@ -165,6 +165,15 @@ li {
     border-bottom: 1px solid grey;
 }
 
+#opgaveVid {
+    float: left;
+    padding-left: 3%;
+    padding-right: 4%;
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
+
+
 /*MATERIALE VIDEOER START*/
 #videoplayer {
     padding-top: 2%;

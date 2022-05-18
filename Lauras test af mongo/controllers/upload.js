@@ -85,7 +85,7 @@ let getListFiles = async (req, res) => {
             console.log(navngruppe);
             
             
-            if(navngruppe == "sesg-mkluge16-5")
+            if(navngruppe == "sesg-mkluge16-7")
                 {
             filesInfos.push({
                 name: doc.filename,
