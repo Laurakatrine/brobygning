@@ -82,7 +82,7 @@ li {
     list-style: none;
     font-family: 'Svendborg Erhvervsskole';
     font-weight: 400;
-    font-size: 60%;
+    font-size: 50%;
     display: inline;
 }
 
@@ -113,7 +113,7 @@ li {
     text-align: center;
     font-family: 'Svendborg Erhvervsskole';
     font-weight: 500;
-    font-size: 100%;
+    font-size: 80%;
 }
 
 #logo {
