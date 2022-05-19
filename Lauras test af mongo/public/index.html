@@ -72,26 +72,8 @@
                 //console.log("logging in " + data);
                 var dataObj = JSON.parse(data);
 
-                var registreretBrgn = dataObj[2].brugernavn;
-                var registreretPswd = dataObj[2].password;
-
-                var registreretBrgn2 = dataObj[3].brugernavn;
-                var registreretPswd2 = dataObj[3].password;
-
-                var registreretBrgn3 = dataObj[4].brugernavn;
-                var registreretPswd3 = dataObj[4].password;
-                
-                var registreretBrgn4 = dataObj[5].brugernavn;
-                var registreretPswd4 = dataObj[5].password;
-                
-                var registreretBrgn5 = dataObj[6].brugernavn;
-                var registreretPswd5 = dataObj[6].password;
-                
-                var registreretBrgn6 = dataObj[7].brugernavn;
-                var registreretPswd6 = dataObj[7].password;
-                
-                var registreretBrgn7 = dataObj[8].brugernavn;
-                var registreretPswd7 = dataObj[8].password;
+                var registreretBrgn = dataObj[1].brugernavn;
+                var registreretPswd = dataObj[1].password;
                 
                 var registreretBrgn8 = dataObj[0].brugernavn;
                 var registreretPswd8 = dataObj[0].password;
@@ -99,7 +81,8 @@
                 username = $('#username').val();
                 password = $('#pwd').val();
 
-                if (((username == registreretBrgn) && (password == registreretPswd)) || ((username == registreretBrgn2) && (password == registreretPswd2)) || ((username == registreretBrgn3) && (password == registreretPswd3))|| ((username == registreretBrgn4) && (password == registreretPswd4))|| ((username == registreretBrgn5) && (password == registreretPswd5))|| ((username == registreretBrgn6) && (password == registreretPswd6))|| ((username == registreretBrgn7) && (password == registreretPswd7))|| ((username == registreretBrgn8) && (password == registreretPswd8))) {
+                //if (((username == registreretBrgn) && (password == registreretPswd)) || ((username == registreretBrgn2) && (password == registreretPswd2)) || ((username == registreretBrgn3) && (password == registreretPswd3))|| ((username == registreretBrgn4) && (password == registreretPswd4))|| ((username == registreretBrgn5) && (password == registreretPswd5))|| ((username == registreretBrgn6) && (password == registreretPswd6))|| ((username == registreretBrgn7) && (password == registreretPswd7))|| ((username == registreretBrgn8) && (password == registreretPswd8))) { //
+                if(((username == registreretBrgn) && (password == registreretPswd)) || ((username == registreretBrgn8) && (password == registreretPswd8))) {
                     console.log("Correct login");
                     localStorage.setItem("login", "true");
                     localStorage.setItem("gruppenavn", username);

@@ -68,6 +68,11 @@ li {
     font-weight: 100;
 }
 
+.nav2 a {
+    text-decoration: none;
+    color: #455b6e;
+}
+
 .nav {
     object-fit: contain;
 }
@@ -175,6 +180,7 @@ li {
 
 
 /*MATERIALE VIDEOER START*/
+
 #videoplayer {
     padding-top: 2%;
     column-count: 3;
@@ -187,7 +193,9 @@ table {
 
 th td {}
 
+
 /* MATERIALE VIDEOER SLUT*/
+
 
 /*ELEV VIDEOR START*/
 
@@ -198,7 +206,6 @@ th td {}
 
 #QRkode {
     position: relative;
-    
     right: -20%;
     text-align: center;
 }
@@ -207,93 +214,119 @@ th td {}
     display: inline-flex;
 }
 
-* {box-sizing:border-box}
+* {
+    box-sizing: border-box
+}
+
 
 /* Slideshow container */
+
 .slideshow-container {
-  max-width: 1000px;
-  position: relative;
-  margin: auto;
+    max-width: 1000px;
+    position: relative;
+    margin: auto;
 }
+
 
 /* Hide the images by default */
+
 .mySlides {
-  display: none;
+    display: none;
 }
 
+
 /* Next & previous buttons */
-.prev, .next {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  width: auto;
-  margin-top: -22px;
-  padding: 16px;
-  color: white;
-  font-weight: bold;
-  font-size: 18px;
-  transition: 0.6s ease;
-  border-radius: 0 3px 3px 0;
-  user-select: none;
+
+.prev,
+.next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
 }
 
 .prev {
-  left: 0;
-  border-radius: 3px 0 0 3px;
+    left: 0;
+    border-radius: 3px 0 0 3px;
 }
+
+
 /* Position the "next button" to the right */
+
 .next {
-  right: 0;
-  border-radius: 3px 0 0 3px;
+    right: 0;
+    border-radius: 3px 0 0 3px;
 }
+
 
 /* On hover, add a black background color with a little bit see-through */
-.prev:hover, .next:hover {
-  background-color: rgba(0,0,0,0.8);
+
+.prev:hover,
+.next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
 }
+
 
 /* Caption text */
-.text {
-  color: #455b6e;
-  font-size: 20px;
-    font-family: "Svendborg Erhvervsskole";
- /*padding: 8px 12px;*/
-  position: absolute;
-  bottom: 8px;
-  width: 100%;
-  text-align: center;
-}
 
+.text {
+    color: #455b6e;
+    font-size: 20px;
+    font-family: "Svendborg Erhvervsskole";
+    /*padding: 8px 12px;*/
+    position: absolute;
+    bottom: 8px;
+    width: 100%;
+    text-align: center;
+}
 
 
 /* The dots/bullets/indicators */
+
 .dot {
-  cursor: pointer;
-  height: 15px;
-  width: 15px;
-  margin: 0 2px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-  transition: background-color 0.6s ease;
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
 }
 
-.active, .dot:hover {
-  background-color: #717171;
+.active,
+.dot:hover {
+    background-color: #717171;
 }
+
 
 /* Fading animation */
+
 .fade {
-  animation-name: fade;
-  animation-duration: 1.5s;
+    animation-name: fade;
+    animation-duration: 1.5s;
 }
 
 @keyframes fade {
-  from {opacity: .4}
-  to {opacity: 1}
+    from {
+        opacity: .4
+    }
+    to {
+        opacity: 1
+    }
 }
 
+
 /*ELEV VIDEOER SLUT */
+
 
 /*NOTESBOG START*/
 
@@ -304,17 +337,18 @@ th td {}
 
 /*NOTESBOG SLUT*/
 
+
 /*OPRET START*/
 
 #input {
     resize: none;
 }
 
-#inputTitel{
-    resize:none; 
+#inputTitel {
+    resize: none;
 }
 
-#send{
+#send {
     background-color: #455b6e;
     border: none;
     color: white;
@@ -325,7 +359,6 @@ th td {}
     display: inline;
     font-size: 16px;
     transition-duration: 0.4s;
-    
 }
 
 #send:hover {
@@ -333,8 +366,7 @@ th td {}
     color: #455b6e;
 }
 
-
-.btn btn-primary{
+.btn btn-primary {
     background-color: white;
     border: none;
     color: #455b6e;
@@ -345,14 +377,12 @@ th td {}
     display: inline;
     font-size: 16px;
     transition-duration: 0.4s;
-    
 }
 
 .btn btn-primary:hover {
     background-color: #455b6e;
     color: white;
 }
-
 
 
 /*OPRET SLUT*/
@@ -472,7 +502,8 @@ select {
 
 /*TJEKLISTE START*/
 
-#moreChecks, #moreChecks2 {
+#moreChecks,
+#moreChecks2 {
     margin-top: 1%;
     margin-left: 1%;
     background-color: white;
@@ -484,7 +515,8 @@ select {
     transition-duration: 0.4s;
 }
 
-#moreChecks:hover, #moreChecks2:hover {
+#moreChecks:hover,
+#moreChecks2:hover {
     background-color: #455b6e;
     color: white;
 }
@@ -510,7 +542,7 @@ select {
     resize: none;
 }
 
-#testbutton{
+#testbutton {
     background-color: #455b6e;
     border: none;
     color: white;
@@ -521,14 +553,12 @@ select {
     display: inline;
     font-size: 16px;
     transition-duration: 0.4s;
-    
 }
 
 #testbutton:hover {
     background-color: white;
     color: #455b6e;
 }
-
 
 
 /*SE INDLÆG SLUT*/
