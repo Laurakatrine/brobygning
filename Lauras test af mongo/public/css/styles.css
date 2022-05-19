@@ -171,11 +171,11 @@ li {
 }
 
 #opgaveVid {
-    float: left;
+    float: right;
     padding-left: 3%;
     padding-right: 4%;
-    padding-top: 3%;
-    padding-bottom: 3%;
+    padding-top: 5%;
+    padding-bottom: 2%;
 }
 
 
@@ -206,8 +206,16 @@ th td {}
 
 #QRkode {
     position: relative;
-    right: -20%;
+    right: -10%;
     text-align: center;
+    padding-bottom: 4%;
+}
+
+#QRkode p {
+     color: #455b6e;
+    font-size: 20px;
+    font-family: "Svendborg Erhvervsskole";
+    font-weight: 500;
 }
 
 #elev {
@@ -334,6 +342,10 @@ th td {}
     align-content: left;
 }
 
+#notesbogBtm {
+    padding-bottom: 4%;
+}
+
 
 /*NOTESBOG SLUT*/
 
@@ -353,7 +365,7 @@ th td {}
     border: none;
     color: white;
     padding: 15px 32px;
-    margin-left: 72%;
+    margin-left: 86.5%;
     text-align: center;
     text-decoration: none;
     display: inline;
@@ -363,6 +375,7 @@ th td {}
 
 #send:hover {
     background-color: white;
+    cursor: pointer;
     color: #455b6e;
 }
 
@@ -462,6 +475,7 @@ select {
 
 .closepopup:hover {
     background-color: #455b6e;
+    cursor: pointer;
     color: white;
 }
 
@@ -486,6 +500,7 @@ select {
 }
 
 #loginBtn:hover {
+    cursor: pointer;
     background-color: #455b6e;
     color: white;
 }
@@ -513,6 +528,7 @@ select {
     text-align: center;
     color: #455b6e;
     transition-duration: 0.4s;
+    border-color: white;
 }
 
 #moreChecks:hover,
@@ -547,7 +563,7 @@ select {
     border: none;
     color: white;
     padding: 15px 32px;
-    margin-left: 72%;
+    margin-left: 85%;
     text-align: center;
     text-decoration: none;
     display: inline;
@@ -557,6 +573,7 @@ select {
 
 #testbutton:hover {
     background-color: white;
+    cursor: pointer;
     color: #455b6e;
 }
 
