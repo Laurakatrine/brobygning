@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+</head>
+<script src="/javascripts/jquery.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    $(document).ready(function() {
+
+        $("#navbar").load("navbar.html");
+        $("#ekstraNav").load("navbarEkstra.html");
+        $("footer").load("footer.html");
+
+        var files = [];
+        var chunks = [];
+
+        var buttonPressed = false;
+        var fotoData;
+        var nr = 0;
+        var lastChunckName;
+        var fotoArray = [];
+        var numArray = [];
+
+        localStorage.setItem("her", "seindlæg");
+
+        let socket = io.connect('/'); // default namespace for Socket.io
+
+        socket.emit("readyLoad");
+
+        console.log("button: " + buttonPressed);
+        $.get('/chunks', function(data) {
+            for (i = 0; i < data.length; i++) {
+                chunks.push(data[i]);
+            }
+        }).done(function() {
+            $.get('/files', function(data) {
+                for (i = 0; i < data.length; i++) {
+                    files.push(data[i]);
+                }
+
+                for (j = 0; j < files.length; j++) {
+                    for (i = 0; i < chunks.length; i++) {
+                        if (chunks[i].files_id == files[j].id) {
+                            if (lastChunckName == chunks[i].files_id) {
+                                fotoArray[chunks[i].nr] = chunks[i].data;
+                            } else {
+                                lastChunckName = chunks[i].files_id;
+                                fotoArray[chunks[i].nr] = chunks[i].data;
+                            }
+                        }
+
+                        $('#fotos').append($(document.createElement('img')).prop({
+                            id: 'foto' + (j)
+                        }));
+
+                        fotoData = "";
+
+                        for (k = 0; k < fotoArray.length; k++) {
+                            fotoData += fotoArray[k];
+
+                        }
+
+
+                        $('#foto' + (j)).attr("src", "data:image/" + files[j].type + ";base64," + fotoData);
+                    }
+                }
+
+            });
+        });
+
+
+
+        $(function() {
+            if (localStorage.getItem("login") == "false") {
+                console.log("im not logged in");
+
+            }
+            if (localStorage.getItem("login") == "true") {
+                console.log("im already logged in");
+            }
+
+            socket.on("saved", (data) => {
+                console.log("saved " + data);
+                $('#titel').text("");
+                var dataObj = JSON.parse(data);
+
+
+                for (i = 0; i < dataObj.length; i++) {
+
+                    if (dataObj[i].brugernavn == localStorage.getItem("gruppenavn")) {
+                        numArray.push(i);
+                        $('#content').append($(document.createElement('p')).prop({
+                            id: 'dato' + i
+                        }).html(dataObj[i].dato + ", " + dataObj[i].tidspunkt));
+
+                        $('#content').append($(document.createElement('form')).prop({
+                            id: 'form' + i
+                        }));
+
+
+                        $('#content').append($(document.createElement('textarea')).prop({
+
+                            id: 'titel' + i,
+                            class: 'contentform',
+                            cols: "160",
+                            readonly: true
+
+                        }).html(dataObj[i].titel));
+
+                        $('#content').append($(document.createElement('textarea')).prop({
+
+                            id: 'input' + i,
+                            class: 'contentform',
+                            cols: "160",
+                            rows: "30",
+                        }).html(dataObj[i].indlæg));
+
+                    }
+                }
+            });
+
+        });
+
+
+        $("#testbutton").on('click', function() {
+            console.log("clikked");
+
+
+            for (i = 0; i < numArray.length; i++) {
+                var num = numArray[i]
+                var username = localStorage.getItem("gruppenavn");
+                var data = $('#input' + num).val();
+                var titel = $('#titel' + num).val();
+                console.log(data);
+                console.log(username);
+
+                socket.emit('edit', data, username, titel);
+                console.log(data, username, titel);
+
+            }
+            alert("opdateret!");
+        });
+    });
+
+</script>
+
+<body>
+    <div id="navbar">
+
+    </div>
+
+    <div id="ekstraNav">
+    </div>
+    <div id="beskrivelse">
+        <div>
+            <h2>Se indlæg</h2>
+            <p>Billeder er langsomme om at loade, vær tålmodig og de kommer :-). </p>
+
+        </div>
+
+        <div>
+            <div id="fotos">
+            </div>
+            <img id="foto">
+
+
+        </div>
+        <div id="content">
+            <div>
+                <p id="dato"></p>
+            </div>
+            <div>
+                <h3 id=titel></h3>
+            </div>
+            <div>
+                <p id="indhold"></p>
+            </div>
+
+            <button id="testbutton" type="button"> Opdater indlæg</button>
+
+        </div>
+    </div>
+
+
+
+</body>
+<footer></footer>
+
+</html>

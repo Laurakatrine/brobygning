@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <style>
+        img {
+            width: 50%;
+            height: 50%;
+        }
+
+    </style>
+</head>
+<script src="/javascripts/jquery.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    $(document).ready(function() {
+
+        $("#navbar").load("navbar.html");
+        $('#ekstraNav').load("navbarEkstra.html");
+        $("footer").load("footer.html");
+        let socket = io.connect('/'); // default namespace for Socket.io
+
+        let imagesPreview = function(input, placeToInsertImagePreview) {
+            if (input.files) {
+                let filesAmount = input.files.length;
+                for (i = 0; i < filesAmount; i++) {
+                    let reader = new FileReader();
+                    reader.onload = function(event) {
+                        $($.parseHTML("<img>"))
+                            .attr("src", event.target.result)
+                            .appendTo(placeToInsertImagePreview);
+                    };
+                    reader.readAsDataURL(input.files[i]);
+                }
+            }
+        };
+
+        $("#input-files").on("change", function() {
+            imagesPreview(this, "div.preview-images");
+        });
+
+
+        $(function() {
+            console.log("new page");
+            $("#navbar").load("navbar.html");
+
+            if (localStorage.getItem("login") == "false") {
+                console.log("im not logged in");
+                $('#inputfield').hide();
+                $('#indhold').hide();
+            }
+            if (localStorage.getItem("login") == "true") {
+                console.log("im already logged in");
+                $('#inputfield').show();
+                $('#indhold').show();
+
+            }
+
+            $('#send').click(() => {
+                console.log("clikked");
+                var username = localStorage.getItem("gruppenavn");
+                var data = $('#input').val();
+                var titel = $('#inputTitel').val();
+                console.log(data);
+                console.log(username);
+
+                if (titel.length == 0) {
+                    alert("Du skal give indholdet en titel");
+                } else {
+                    socket.emit('indlæg', data, username, titel);
+                    $('#input').val('');
+                    $('#inputTitel').val('');
+
+                    $('#input').text("");
+                    $('#inputTitel').text("");
+                    alert("Indlægget er lagt op!");
+                }
+                console.log(titel.length);
+            });
+        });
+    });
+
+</script>
+
+<body>
+
+
+    <div id="navbar">
+
+    </div>
+
+    <div id="ekstraNav">
+    </div>
+
+    <h2>Opret indlæg</h2>
+
+    <form action="/upload" method="POST" enctype=multipart/form-data>
+
+        <div class="form-group">
+            <input type="file" name="file" multiple id="input-files" class="form-control-file border" />
+
+            <button type="submit" class="btn btn-primary">Upload billede</button>
+        </div>
+
+    </form>
+
+    <div id="inputfield">
+        <form>
+            <br>
+            <input id="send" type="button" value="Upload">
+            <br>
+            <textarea id="inputTitel" placeholder="Giv indlægget en titel" cols="160"></textarea>
+
+            <br>
+
+            <textarea id="input" placeholder="Skriv jeres indlæg her! &#10&#10Hvad har I lavet siden sidst? &#10Hvilke tanker har I gjort jer? &#10Har jeres plan ændret sig?&#10Hvad skal I nu?" rows="30" cols="160"></textarea>
+
+        </form>
+
+        <div class="preview-images">
+        </div>
+        <div>
+
+            <p></p>
+        </div>
+        <p>
+
+
+
+        </p>
+
+
+</body>
+<footer></footer>
+
+</html>

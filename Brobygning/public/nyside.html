@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+</head>
+<script src="/javascripts/jquery.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    $(document).ready(function() {
+        $(function() {
+            $("#navbar").load("navbar.html");
+
+            if (localStorage.getItem("login") == "false") {
+                console.log("im not logged in");
+
+                $('#indhold').hide();
+            }
+            if (localStorage.getItem("login") == "true") {
+                console.log("im already logged in");
+                $('#indhold').show();
+            }
+        });
+    });
+
+</script>
+
+<body>
+    <div id="navbar">
+
+    </div>
+
+    <div>
+        <p>Det her er vores hjem..</p>
+    </div>
+    <p>
+        <div id=indhold>
+            <p>Det her er index siden!</p>
+        </div>
+    </p>
+</body>
+
+</html>
